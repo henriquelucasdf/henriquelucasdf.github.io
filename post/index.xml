@@ -6,14 +6,15 @@
     <description>Recent content in Projetos on Henrique Lucas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Projeto 1</title>
+      <title>Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada.</title>
       <link>https://henriquelucasdf.github.io/post/projeto1/</link>
-      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/post/projeto1/</guid>
-      <description>&amp;ldquo;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</description>
+      <description>Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
+Este projeto foi baseado no curso &amp;ldquo;Data Science em Produção&amp;rdquo;, do cientista de dados brasileiro Meigarom Lopes.</description>
     </item>
     
     <item>
