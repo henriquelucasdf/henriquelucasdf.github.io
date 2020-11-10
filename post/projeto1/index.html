@@ -20,6 +20,8 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
     
 
     
+      <link rel="stylesheet" href="https://henriquelucasdf.github.io/css/custom.css">
+    
 
     
       
@@ -40,11 +42,11 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do cientista de dados brasileiro Meigarom Lopes.">
 <meta itemprop="datePublished" content="2020-11-07T10:58:08-03:00" />
 <meta itemprop="dateModified" content="2020-11-07T10:58:08-03:00" />
-<meta itemprop="wordCount" content="575">
+<meta itemprop="wordCount" content="2565">
 
 
 
-<meta itemprop="keywords" content="Previsão de Vendas,Modelo em Produção,XGBoost,RandomForest,Otimização Bayesiana,Bot telegram," />
+<meta itemprop="keywords" content="Previsão de Vendas,Modelo em Produção,XGBoost,RandomForest,GPU Acceleration,Otimização Bayesiana,Bot telegram," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada."/>
 <meta name="twitter:description" content="Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
@@ -183,19 +185,35 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 
       
       
+        <span class="f6 mv4 dib tracked"> - 13 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 2565 words</span>
+      
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="introdução">Introdução</h2>
+    <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h2 id="introdução">Introdução</h2>
 <p>Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.</p>
 <p>Este projeto foi baseado no curso <a href="https://sejaumdatascientist.com/como-ser-um-data-scientist/">&ldquo;Data Science em Produção&rdquo;</a>, do cientista de dados brasileiro Meigarom Lopes.</p>
 <p>Os dados para a realização desse projeto foram obtidos de uma competição do <a href="https://www.kaggle.com/c/rossmann-store-sales">Kaggle</a>.</p>
+<p><strong>Conteúdo:</strong></p>
+<ul>
+<li><a href="#10-prepara%C3%A7%C3%A3o-dos-dados">1.0 Preparação dos Dados</a></li>
+<li><a href="#20-feature-engineering">2.0 Feature Engineering</a></li>
+<li><a href="#30-an%C3%A1lise-explorat%C3%B3ria-de-dados-eda">3.0 Análise Exploratória de Dados (EDA)</a></li>
+<li><a href="#40-prepara%C3%A7%C3%A3o-dos-dados">4.0 Preparação dos Dados</a></li>
+<li><a href="#50-sele%C3%A7%C3%A3o-de-features">5.0 Seleção de Features</a></li>
+</ul>
 <h2 id="10-preparação-dos-dados">1.0 Preparação dos Dados</h2>
 <h4 id="11-renomeando-as-colunas">1.1. Renomeando as colunas</h4>
 <p>Inicialmente, para padronizar os dados as serem trabalhados, utilizou-se a biblioteca Inflection para converter as colunas para &ldquo;snakecase&rdquo;.</p>
 <h4 id="12-dimensão-dos-dados">1.2. Dimensão dos Dados</h4>
 <ul>
-<li>Dataset de treino: (969.264, 18)</li>
-<li>Dataset de teste: (47.945, 18)</li>
-<li>Datas: 01-01-2013 a 31-07-2015.</li>
+<li>Dataset de treino: (969.264 x 18)</li>
+<li>Dataset de teste: (47.945 x 18)</li>
+<li>Datas:
+<ul>
+<li>Início: 01-01-2013.</li>
+<li>Fim: 31-07-2015.</li>
+</ul>
+</li>
 </ul>
 <h4 id="13-tipo-de-dados">1.3. Tipo de dados</h4>
 <p>As variáveis iniciais do problema são descritas abaixo:</p>
@@ -253,27 +271,27 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 <tbody>
 <tr>
 <td style="text-align:left">competition_distance</td>
-<td style="text-align:center">2642</td>
+<td style="text-align:center">2.642</td>
 </tr>
 <tr>
 <td style="text-align:left">competition_open_since_month</td>
-<td style="text-align:center">323348</td>
+<td style="text-align:center">323.348</td>
 </tr>
 <tr>
 <td style="text-align:left">competition_open_since_year</td>
-<td style="text-align:center">323348</td>
+<td style="text-align:center">323.348</td>
 </tr>
 <tr>
 <td style="text-align:left">promo2_since_week</td>
-<td style="text-align:center">508031</td>
+<td style="text-align:center">508.031</td>
 </tr>
 <tr>
 <td style="text-align:left">promo2_since_year</td>
-<td style="text-align:center">508031</td>
+<td style="text-align:center">508.031</td>
 </tr>
 <tr>
 <td style="text-align:left">promo_interval</td>
-<td style="text-align:center">508031</td>
+<td style="text-align:center">508.031</td>
 </tr>
 </tbody>
 </table>
@@ -283,10 +301,336 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 <p>Sendo assim, para as colunas abaixo seguiu-se a seguinte abordagem:</p>
 <ul>
 <li><strong>competition_distance:</strong> Sendo NA, significa provavelmente que aquela loja não possui nenhum concorrente próximo naquela data. Assim, foi atribuído um valor absurdamente alto para substituir cada NA.</li>
-<li><strong>promo_interval:</strong> Os valores NA foram preenchidos com 0, já que o NA indica que a loja não está participando da &ldquo;promo2&rdquo;. Ressalta-se que está variável foi utilizada para derivar a coluna &ldquo;is_promo&rdquo;, para indicar se uma loja está participando ou não da promoção. A coluna promo_interval será excluída posteriormente.</li>
+<li><strong>promo_interval:</strong> Os valores NA foram preenchidos com zero, já que o NA indica que a loja não está participando da &ldquo;promo2&rdquo;. Ressalta-se que esta variável foi utilizada para derivar a coluna &ldquo;is_promo&rdquo;, indicando se uma loja está participando ou não da promoção. A coluna promo_interval será excluída posteriormente.</li>
 </ul>
-<p>Como as colunas &ldquo;competition_open_since_month&rdquo;, &ldquo;competition_open_since_year&rdquo;, &ldquo;promo2_since_week&rdquo; e &ldquo;promo2_since_year&rdquo; se referem a datas, não existe uma boa prática para imputar valores nas linhas contendo NAs. Desta forma, a coluna &ldquo;date&rdquo; será utilizada como suporte para preencher estes valores.</p>
+<p>Como as colunas <strong>&ldquo;competition_open_since_month&rdquo;, &ldquo;competition_open_since_year&rdquo;, &ldquo;promo2_since_week&rdquo; e &ldquo;promo2_since_year&rdquo;</strong> se referem a datas, não existe uma abordagem ideal para imputar valores nas linhas contendo NAs. Desta forma, a coluna &ldquo;date&rdquo; foi utilizada como suporte para preencher estes valores.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="20-feature-engineering">2.0 Feature Engineering</h2>
+<p>Nesta etapa, é necessário criarmos novas variáveis para o nosso modelo, buscando a maximização de sua performance. Uma boa abordagem para realizar esta tarefa é observar as necessidades da empresa em questão, elaborando diversas hipóteses de negócio que guiarão a obtenção das features e serão posteriormente validadas na Análise Exploratória de Dados.</p>
+<h4 id="21-criação-de-hipóteses-de-negócio">2.1 Criação de hipóteses de negócio</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">As seguintes hipóteses foram elaboradas:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">H1. Lojas com maior sortimento deveriam vender mais.</td>
+</tr>
+<tr>
+<td style="text-align:left">H2. Lojas com competidores mais próximos deveriam vender menos.</td>
+</tr>
+<tr>
+<td style="text-align:left">H3. Lojas com competidores a mais tempo deveriam vender mais.</td>
+</tr>
+<tr>
+<td style="text-align:left">H4. Lojas com promoções ativas por mais tempo nos produtos deveriam vender mais.</td>
+</tr>
+<tr>
+<td style="text-align:left">H5. Lojas com mais promoções consecutivas deveriam vender mais.</td>
+</tr>
+<tr>
+<td style="text-align:left">H6. Lojas abertas durante o Natal deveriam vender mais.</td>
+</tr>
+<tr>
+<td style="text-align:left">H7. Lojas deveriam vender mais ao longo dos anos.</td>
+</tr>
+<tr>
+<td style="text-align:left">H8. Lojas deveriam vender mais no segundo semestre do ano.</td>
+</tr>
+<tr>
+<td style="text-align:left">H9. Lojas deveriam vender mais depois do dia 10 de cada mês.</td>
+</tr>
+<tr>
+<td style="text-align:left">H10. Lojas deveriam vender menos aos finais de semana.</td>
+</tr>
+<tr>
+<td style="text-align:left">H11. Lojas deveriam vender menos durante os feriados escolares.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="22-obtenção-de-features">2.2 Obtenção de features</h4>
+<ul>
+<li>
+<p>A variável <strong>&ldquo;date&rdquo;</strong> foi utilizada para criar novas colunas com dados temporais:</p>
+<ul>
+<li><strong>&ldquo;promo2_time_week&rdquo; e &ldquo;promo2_time_month&rdquo;:</strong> indicam a quanto tempo as lojas estão realizando promoções consecutivas.</li>
+<li><strong>&ldquo;competition_since_month&rdquo;:</strong> indica a quantos meses aquela loja possui competição.</li>
+<li><strong>&ldquo;day&rdquo;,  &ldquo;month&rdquo;, &ldquo;year_week&rdquo; e &ldquo;is_weekday&rdquo;:</strong> foram criadas para melhor detalhar a variável <strong>&ldquo;date&rdquo;</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>&ldquo;state_holiday&rdquo; e &ldquo;assortment&rdquo;:</strong> essas variáveis eram descritas apenas por letras. Optou-se por substituir essas letras pelas palavras as quais elas se referiam.</p>
+</li>
+</ul>
+<h4 id="23-filtragem-de-variáveis">2.3 Filtragem de variáveis</h4>
+<p>Nesta etapa deve-se checar as restrições de negócio que devem ser aplicadas no projeto, filtrando linhas e colunas que não atendem aos requisitos.</p>
+<ul>
+<li>
+<p><strong>Filtragem de linhas:</strong> entradas com lojas fechadas ou com lojas sem faturamento foram excluídas, já que ambos os casos são irrelevantes para a previsão de vendas.</p>
+</li>
+<li>
+<p><strong>Filtragem de colunas:</strong> variáveis que não estarão disponíveis no momento da previsão devem ser excluídas. A coluna <strong>&ldquo;customers&rdquo;</strong> poderia ser prevista, mas seria necessário um outro projeto de regressão apenas para isso. Desta forma, forma excluídas as colunas <strong>&ldquo;customers&rdquo;, &ldquo;open&rdquo;, &ldquo;promo_interval&rdquo; e &ldquo;month_map&rdquo;</strong>.</p>
+</li>
+</ul>
+<h2 id="30-análise-exploratória-de-dados-eda">3.0 Análise Exploratória de Dados (EDA)</h2>
+<p>Este tópico é um dos mais importantes de todo o projeto. O principal objetivo da Análise Exploratória de Dados é conhecer melhor os dados e gerar diversos insights para o negócio. Esta é uma etapa fundamental para ter uma noção de quais são as variáveis importantes do modelo e como cada uma delas se comporta em relação à variável objetivo (vendas).
+Para melhor visualização, esta etapa foi dividida em 3 partes:</p>
+<ol>
+<li><strong>Análise Univariada:</strong> visa verificar a distribuição das features e seus comportamentos. Aqui será visualizado a distribuição das features e um trabalho de estatística descritiva será realizado.</li>
+<li><strong>Análise Bivariada:</strong> aqui o objetivo é verificar como cada variável se comporta em relação à variável target. Nesta análise será realizada a validação das hipóteses de negócio criada na seção <a href="#20-feature-engineering">2.0</a></li>
+<li><strong>Análise Multivariada:</strong> visa verificar se existe informações repetidas entre as features. Como modelos de Machine Learning performam melhor em modelos menos complexos, reduzir a dimensionalidade dos dados é uma boa prática.</li>
+</ol>
+<h4 id="31-análise-univariada">3.1 Análise Univariada</h4>
+<ul>
+<li>
+<p><strong>Variável resposta (Sales):</strong> A distribuição se assemelha à distribuição de Poisson, leptocúrtica e com assimetria positiva.</p>
+<p><img src="https://henriquelucasdf.github.io/images/uni_sales.png" alt=""></p>
+</li>
+<li>
+<p><strong>Estatística descritiva das variáveis numéricas:</strong></p>
+<p><img src="https://henriquelucasdf.github.io/images/uni_num.png" alt=""></p>
+<ul>
+<li><strong>Conclusões:</strong>
+<ul>
+<li>O máximo de vendas em uma dia foi US$ 41.551,00, sendo a média de vendas diária de US$ 6.955,96;</li>
+<li>O desvio padrão das vendas é elevado, indicando uma grande variação ao longo do tempo.</li>
+<li>Existem lojas com competidores a no mínimo 20 metros de distância.</li>
+</ul>
+</li>
+</ul>
+<p>Visualizando as distribuições:</p>
+<p><img src="https://henriquelucasdf.github.io/images/num_vendas.png" alt=""></p>
+<ul>
+<li><strong>Conclusões:</strong>
+<ul>
+<li>Nenhuma variável possui distribuição normal.</li>
+<li>A distribuição de dados entre as lojas é uniforme.</li>
+<li>Há mais dados no primeiro semestre, indicando maior numero de vendas.</li>
+<li>A maior parte das lojas possuem competidores próximos.</li>
+<li>A maioria dos competidores são recentes,</li>
+<li>Há poucas vendas nos domingos.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Variáveis categóricas:</strong></p>
+<p><img src="https://henriquelucasdf.github.io/images/uni_cat.png" alt=""></p>
+<ul>
+<li><strong>Conclusões:</strong>
+<ul>
+<li><strong>&ldquo;public_holidays&rdquo;</strong> é o feriado mais comum. <strong>&ldquo;easter_holiday&rdquo;</strong> apresenta a menor curtose em relação às vendas.</li>
+<li>O tipo mais comum de loja é o tipo &ldquo;a&rdquo;. Todos os tipos possuem distribuição de vendas semelhantes, com exceção das lojas tipo &ldquo;b&rdquo;.</li>
+<li><strong>&ldquo;assortment&rdquo;</strong> do tipo &ldquo;basic&rdquo; é o mais comum, seguido pelo tipo &ldquo;extended&rdquo;. Esses dois tipos possuem vendas distribuídas semelhantemente, enquanto o tipo &ldquo;extra&rdquo; possui distribuição mais platicúrtica.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="32-análise-bivariada">3.2 Análise Bivariada</h4>
+<ul>
+<li>
+<p><strong>Variáveis Categóricas x Vendas:</strong></p>
+<p><img src="https://henriquelucasdf.github.io/images/cat_sales.png" alt=""></p>
+<ul>
+<li><strong>Conclusões:</strong>
+<ul>
+<li>Nos feriados estaduais do tipo &ldquo;b&rdquo; as lojas tendem a vender mais, enquanto nos do tipo &ldquo;a&rdquo;, menos.</li>
+<li>Lojas do tipo &ldquo;b&rdquo; tendem a vender mais; Do tipo a vendem menos.</li>
+<li>Lojas com assortment do tipo &ldquo;b&rdquo; apresentam maiores vendas, enquanto o do tipo &ldquo;c&rdquo; menores.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Validação das hipóteses de negócio:</strong> Nesta seção será avaliado o comportamento das variáveis independentes em relação à variável alvo. Utilizando as hipóteses como um guia, iremos gerar insights para o negócio e analisar as features envolvidas.</p>
+<ul>
+<li>
+<p><strong>H1. Lojas com maior sortimento deveriam vender mais:</strong></p>
+<ul>
+<li><strong>Verdadeiro.</strong> Na média, as lojas com mais sortimento (extra) vendem mais.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h1_0.png" alt=""></p>
+<p><img src="https://henriquelucasdf.github.io/images/h1_l.png" alt=""></p>
+</li>
+<li>
+<p><strong>H2. Lojas com competidores mais próximos deveriam vender menos:</strong></p>
+<ul>
+<li><strong>Falso.</strong> Não há correlação entre a média de vendas e a distância dos competidores</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h2_0.png" alt=""></p>
+</li>
+<li>
+<p><strong>H3. Lojas com competidores a mais tempo deveriam vender mais:</strong></p>
+<ul>
+<li><strong>Falso.</strong> Lojas com competidores a mais tempo tendem a vender, em média, menos.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/he.png" alt=""></p>
+</li>
+<li>
+<p><strong>H4. Lojas com promoções ativas por mais tempo nos produtos deveriam vender mais:</strong></p>
+<ul>
+<li><strong>Verdadeiro.</strong> Quanto mais tempo uma loja fica com promoções extendidas, maior tende a ser a média de vendas. Entretanto, o mesmo não ocorre para as promoções regulares, que não aparentam influenciar nas vendas médias.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h4.png" alt=""></p>
+</li>
+<li>
+<p><strong>H5. Lojas com mais promoções consecutivas deveriam vender mais:</strong></p>
+<ul>
+<li><strong>Falso.</strong> Lojas que realizam apenas uma promoção vendem, em média, mais.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h5.png" alt=""></p>
+</li>
+<li>
+<p><strong>H6. Lojas abertas durante o Natal deveriam vender mais:</strong></p>
+<ul>
+<li><strong>Verdadeiro.</strong> As vendas médias no natal são maiores do que nos dias regulares. Em 2013 as vendas na páscoa foram as maiores, mas em 2014 o natal a ultrapassou.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h6.png" alt=""></p>
+</li>
+<li>
+<p><strong>H7. Lojas deveriam vender mais ao longo dos anos:</strong></p>
+<ul>
+<li><strong>Verdadeiro.</strong> A média de vendas vêm aumentando ao longo dos anos.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h7.png" alt=""></p>
+</li>
+<li>
+<p><strong>H8. Lojas deveriam vender mais no segundo semestre do ano:</strong></p>
+<ul>
+<li><strong>Verdadeiro.</strong> As vendas aumentam no final do ano.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h8.png" alt=""></p>
+</li>
+<li>
+<p><strong>H9. Lojas deveriam vender mais depois do dia 10 de cada mês:</strong></p>
+<ul>
+<li><strong>Falso.</strong> As vendas médias são levemente maiores antes do dia 10. Há uma leve tendência de queda nas vendas médias ao longo do mês.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h9.png" alt=""></p>
+</li>
+<li>
+<p><strong>H10. Lojas deveriam vender menos aos finais de semana:</strong></p>
+<ul>
+<li><strong>Parcialmente verdadeiro.</strong> As vendas médias são menores nos sábados, mas maiores nos domingos.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h10.png" alt=""></p>
+</li>
+<li>
+<p><strong>H11. Lojas deveriam vender menos durante os feriados escolares:</strong></p>
+<ul>
+<li><strong>Falso</strong> Em média, as lojas vendem um pouco mais durante os feriados escolares.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/h11.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resumo das hipóteses:</strong></p>
+<p><img src="https://henriquelucasdf.github.io/images/resumo_h.png" alt=""></p>
+</li>
+</ul>
+<h4 id="33-análise-multivariada">3.3 Análise Multivariada</h4>
+<p>Nesta seção, busca-se responder duas questões:</p>
+<ol>
+<li>Existe alguma variável independente que possua uma alta correlação com a variável alvo? Se sim, esta feature é de extrema importância para o modelo.</li>
+<li>Existe alguma variável independente que possua uma alta correlação com outra variável independente? Caso exista, é necessário retirar uma das duas, já que em modelos de machine learning um modelo mais simples sempre é preferível e, além disso, evita-se problemas de multicolinearidade.</li>
+</ol>
+<p>Para a realização da análise, o dataset foi dividido em colunas numéricas e em colunas categóricas. Para aquelas, será utilizado a correlação de Pearson, expondo os valores em um mapa de calor. Para estas, a técnica Cramer V será utilizada, através da biblioteca Dython.</p>
+<ul>
+<li>
+<p><strong>Variáveis numéricas:</strong></p>
+<p><img src="https://henriquelucasdf.github.io/images/corr_num.png" alt=""></p>
+<ul>
+<li>
+<p>Percebe-se pelo gráfico acima que a variável dependente não é fortemente correlacionada com nenhuma das independentes. A coluna que apresenta maior correlação com a variável alvo é a coluna <strong>&ldquo;promo&rdquo;</strong> (correlação média), seguida pela coluna <strong>&ldquo;day_of_week&rdquo;</strong> (correlação fraca). Todas as outras colunas numéricas apresentam correlação fraca.</p>
+</li>
+<li>
+<p>As seguintes variáveis podem apresentar problemas de multicolinearidade (alta correlação entre elas):</p>
+<ul>
+<li>competition_time_month x competition_open_since_year;</li>
+<li>promo2_time_week x promo2_since_week</li>
+<li>promo2 x promo2_since_year</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Variáveis Categóricas:</strong></p>
+<p><img src="https://henriquelucasdf.github.io/images/corr_cat.png" alt=""></p>
+<ul>
+<li>store_type e assortment possuem uma correlação média, mas não devem causar problemas de multicolinearidade.</li>
+</ul>
+</li>
+</ul>
+<h2 id="40-preparação-dos-dados">4.0 Preparação dos dados:</h2>
+<p>Nesta etapa serão realizadas 4 tarefas:</p>
+<ol>
+<li>Split dos dados entre treino e teste.</li>
+<li>Rescaling dos dados numéricos.</li>
+<li>Transformação cíclica dos dados temporais.</li>
+<li>Encoding dos dados categóricos.</li>
+</ol>
+<h4 id="41-split-entre-treino-e-teste">4.1 Split entre treino e teste</h4>
+<p>A primeira coisa a ser feita na preparação dos dados é a separação entre os dados de treino e os dados de teste. É vital que essa etapa ocorra antes das outras para que não ocorra vazamentos de dados e os resultados do modelo sejam enviesados.</p>
+<p>Como iremos realizar a previsão de vendas para 6 semanas, iremos utilizar como dataset de teste os dados das últimas 6 semanas disponíveis. Esse período compreende as datas entre 19-06-2015 e 31-07-2015. A separação foi feita simplesmente por:</p>
+<pre><code>      df_treino = df4[df4['date']&lt; '2015-06-19']
+      df_teste  = df4[df4['date'] &gt;= '2015-06-19']
+</code></pre>
+<h4 id="42-rescaling-dos-dados-numéricos">4.2 Rescaling dos dados numéricos</h4>
+<p>Para as variáveis independentes, dois tipos de scaler foram utilizados: <strong>MinMax scaler</strong> e <strong>Robust Scaler</strong>. O primeiro será utilizado para features sem muitos outliers, e o último será para aquelas que apresentarem alto número de itens outliers.</p>
+<p>Podemos visualizar os outliers através dos BoxPlots abaixo:</p>
+<p><img src="https://henriquelucasdf.github.io/images/scaling.png" alt=""></p>
+<ul>
+<li>
+<p>Pode-se observar que <strong>competition_distance</strong> e <strong>competition_time_month</strong> possuem muitos outliers. Sendo assim, para estas variáveis o RobustScaler será utilizado.</p>
+</li>
+<li>
+<p>Como <strong>year</strong> e <strong>promo_time_week</strong> possuem poucos outliers, para elas o MinMaxScaler será utilizado.</p>
+</li>
+<li>
+<p>Uma observação importante é que deve-se fazer o rescaling tanto dos dados de treino como nos de teste. Entretanto, deve-se observar que o método <strong>.fit_transform</strong> deve ser aplicado ao treino e o <strong>.transform</strong> ao teste. Por exemplo:</p>
+<pre><code>df_treino['competition_distance'] = rs.fit_transform(df_treino[['competition_distance']].values);
+df_teste['competition_distance'] = rs.transform(df_teste[['competition_distance']].values);
+</code></pre>
+</li>
+</ul>
+<p>Além disso, uma boa prática na preparação dos dados para o modelo de Machine Learning é tentar aproximar a distribuição da variável resposta a uma distribuição normal, já que tais modelos lidam melhor com este tipo de distribuição. Um bom método para realizar esta tarefa é a <strong>Transformação Logarítmica</strong>, que realiza uma boa linearização dos valores, lida bem com grandes variâncias e torna a distribuição mais simétrica, diminuindo os resíduos.</p>
+<p>Desta forma, a variável <strong>sales</strong> foi transformada pela função <strong>log1p</strong> da biblioteca numpy. Abaixo é possível visualizar a transformação.</p>
+<p><img src="https://henriquelucasdf.github.io/images/sales_log.png" alt=""></p>
+<h4 id="43-transformação-cíclica-dos-dados-temporais">4.3 Transformação cíclica dos dados temporais.</h4>
+<p>Algumas variáveis temporais possuem uma natureza cíclica, como por exemplo, os meses do ano. O modelo de machine learning deve ser capaz de entender que o mês 12 é próximo do mês 1, assim como a semana 52 antecede a semana 1 do ano. Uma forma de implementar a natureza cíclica desses dados é através de coordenadas polares, transformando a variável em uma dupla de coordenadas trigonométricas. Um exemplo disso é visto abaixo:</p>
+<pre><code>  df_treino['month_sin'] = df_treino['month'].apply(lambda x: np.sin(x*(2.*np.pi/12)))
+  df_treino['month_cos'] = df_treino['month'].apply(lambda x: np.cos(x*(2.*np.pi/12)))
+</code></pre>
+<p>Desta forma, as variáveis <strong>month</strong>, <strong>day</strong>, <strong>week_of_year</strong> e <strong>day_of_week</strong> foram transformadas para novas variáveis polares, dividindo-as em seno e cosseno.</p>
+<h4 id="44-encoding-de-variáveis-categóricas">4.4 Encoding de variáveis Categóricas</h4>
+<ul>
+<li>
+<p><strong>One-Hot Encoding:</strong> Este tipo de encoding foi aplicado na variável <strong>state_holiday</strong>, já que os valores desta feature representam estados e não há uma ordenação entre eles.</p>
+<ul>
+<li>
+<p>Deve-se atentar ao fato de que o encoding dos dados de treino e de teste devem ser realinhados, para que não haja estados com diferentes codificações. Isso pode ser feitos por:</p>
+<pre><code>df_treino = pd.get_dummies(df_treino, prefix = ['state_holiday'], columns = ['state_holiday'])
+df_teste =  pd.get_dummies(df_teste, prefix = ['state_holiday'], columns = ['state_holiday'])
+# Realinhando os datasets:
+df_treino, df_teste = df_treino.align(df_teste,join='left',axis=1)
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Label Encoder:</strong> Este encoding foi aplicado à feature <strong>store_type</strong>, pois seus valores não se relacionam ordinalmente entre si e nem representam estados.</p>
+</li>
+<li>
+<p><strong>Ordinal Encoder:</strong> Já este foi aplicado para a variável <strong>assortment</strong>, pois existe claramente uma relação de hierarquia entre suas categorias.</p>
+</li>
+</ul>
+<h2 id="50-seleção-de-features">5.0 Seleção de Features</h2>
+<p>Nesta etapa do projeto, é necessário retirar do nosso dataset as variáveis independentes que são repetitivas ou que em nada acrescentam ao nosso modelo, possibilitando assim, a redução da sua dimensionalidade. Existem diversos métodos para realizar esta etapa do projeto, como os métodos de Filtro, os embutidos e os &ldquo;Wrappers&rdquo;. Ressalta-se que estes métodos servem apenas como um suporte ao projetista, já que restrições de negócio também devem ser consideradas ao se selecionar as features.</p>
+<p>Neste projeto optou-se por utilizar um método Wrapper denominado <a href="https://pypi.org/project/Boruta/"><strong>Boruta</strong></a>, que seleciona automaticamente as melhores features para o modelo. O modelo <strong>RandomForestRegressor</strong> foi utilizado para auxiliar na seleção das variáveis.</p>
 <ul class="pa0">
   
    <li class="list">
@@ -306,6 +650,10 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
    </li>
   
    <li class="list">
+     <a href="https://henriquelucasdf.github.io/tags/gpu-acceleration" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">GPU Acceleration</a>
+   </li>
+  
+   <li class="list">
      <a href="https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Otimização Bayesiana</a>
    </li>
   
@@ -320,20 +668,7 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
       </div>
     </div>
 
-    <aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3"></p>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#introdução">Introdução</a></li>
-    <li><a href="#10-preparação-dos-dados">1.0 Preparação dos Dados</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#20-feature-engineering">2.0 Feature Engineering</a></li>
-  </ul>
-</nav>
-  </div>
+    <aside class="w-30-l mt6-l">
 
 
 
