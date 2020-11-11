@@ -42,11 +42,11 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do cientista de dados brasileiro Meigarom Lopes.">
 <meta itemprop="datePublished" content="2020-11-07T10:58:08-03:00" />
 <meta itemprop="dateModified" content="2020-11-07T10:58:08-03:00" />
-<meta itemprop="wordCount" content="2565">
+<meta itemprop="wordCount" content="4277">
 
 
 
-<meta itemprop="keywords" content="Previsão de Vendas,Modelo em Produção,XGBoost,RandomForest,GPU Acceleration,Otimização Bayesiana,Bot telegram," />
+<meta itemprop="keywords" content="Previsão de Vendas,Modelo em Produção,XGBoost,RandomForest,GPU Acceleration,Bot telegram," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada."/>
 <meta name="twitter:description" content="Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
@@ -185,8 +185,8 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 
       
       
-        <span class="f6 mv4 dib tracked"> - 13 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 2565 words</span>
+        <span class="f6 mv4 dib tracked"> - 21 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 4277 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h2 id="introdução">Introdução</h2>
@@ -200,6 +200,10 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 <li><a href="#30-an%C3%A1lise-explorat%C3%B3ria-de-dados-eda">3.0 Análise Exploratória de Dados (EDA)</a></li>
 <li><a href="#40-prepara%C3%A7%C3%A3o-dos-dados">4.0 Preparação dos Dados</a></li>
 <li><a href="#50-sele%C3%A7%C3%A3o-de-features">5.0 Seleção de Features</a></li>
+<li><a href="#60-elabora%C3%A7%C3%A3o-dos-modelos-de-machine-learning">6.0 Elaboração dos Modelos de Machine Learning</a></li>
+<li><a href="#70-otimiza%C3%A7%C3%A3o-dos-hiperpar%C3%A2metros">7.0 Otimização dos Hiperparâmetros</a></li>
+<li><a href="#80-valida%C3%A7%C3%A3o-com-os-dados-de-teste">8.0 Validação com os Dados de Teste</a></li>
+<li><a href="#90-deploy-do-modelo-em-produ%C3%A7%C3%A3o">9.0 Deploy do Modelo em Produção</a></li>
 </ul>
 <h2 id="10-preparação-dos-dados">1.0 Preparação dos Dados</h2>
 <h4 id="11-renomeando-as-colunas">1.1. Renomeando as colunas</h4>
@@ -521,7 +525,7 @@ Para melhor visualização, esta etapa foi dividida em 3 partes:</p>
 <li>
 <p><strong>H11. Lojas deveriam vender menos durante os feriados escolares:</strong></p>
 <ul>
-<li><strong>Falso</strong> Em média, as lojas vendem um pouco mais durante os feriados escolares.</li>
+<li><strong>Falso.</strong> Em média, as lojas vendem um pouco mais durante os feriados escolares.</li>
 </ul>
 <p><img src="https://henriquelucasdf.github.io/images/h11.png" alt=""></p>
 </li>
@@ -630,7 +634,124 @@ df_treino, df_teste = df_treino.align(df_teste,join='left',axis=1)
 </ul>
 <h2 id="50-seleção-de-features">5.0 Seleção de Features</h2>
 <p>Nesta etapa do projeto, é necessário retirar do nosso dataset as variáveis independentes que são repetitivas ou que em nada acrescentam ao nosso modelo, possibilitando assim, a redução da sua dimensionalidade. Existem diversos métodos para realizar esta etapa do projeto, como os métodos de Filtro, os embutidos e os &ldquo;Wrappers&rdquo;. Ressalta-se que estes métodos servem apenas como um suporte ao projetista, já que restrições de negócio também devem ser consideradas ao se selecionar as features.</p>
-<p>Neste projeto optou-se por utilizar um método Wrapper denominado <a href="https://pypi.org/project/Boruta/"><strong>Boruta</strong></a>, que seleciona automaticamente as melhores features para o modelo. O modelo <strong>RandomForestRegressor</strong> foi utilizado para auxiliar na seleção das variáveis.</p>
+<p>Neste projeto optou-se por utilizar um método Wrapper denominado <a href="https://pypi.org/project/Boruta/"><strong>Boruta</strong></a>, que seleciona automaticamente as melhores features para a modelo. Apesar de ser computacionalmente caro, o Boruta produz resultados superiores a outros métodos quando se trata de dados estruturados.</p>
+<p>Inicialmente, foi realizado a retirada das variáveis temporais originais, já que estas foram convertidas para coordenadas polares em novas colunas. Assim, foram excluídas dos dados as colunas: <strong>week_of_year</strong>, <strong>day</strong>, <strong>month</strong>, <strong>day_of_week</strong>, <strong>promo_since</strong>, <strong>competition_since</strong> e <strong>year_week</strong>.</p>
+<p>Com o algoritmo Boruta, as melhores features foram selecionadas. O modelo RandomForestRegressor foi escolhido para auxiliar do algoritmo.</p>
+<p>O algoritmo retornou as seguintes features como relevantes:
+<img src="https://henriquelucasdf.github.io/images/cols_selected.png" alt=""></p>
+<p>Algumas considerações devem ser feitas:</p>
+<ul>
+<li>A features <strong>customers</strong> não pode entrar no modelo final, já que não é uma variável independente.</li>
+<li>Deve-se inserir a feature <strong>date</strong> e a variável alvo, <strong>sales</strong>.</li>
+<li>O algoritmo selecionou apenas a parte cossenoidal de algumas das variáveis temporais. É necessário inserir o par senoidal de cada uma delas.</li>
+</ul>
+<p>Com isso, a lista final de variáveis é mostrada abaixo:</p>
+<p><img src="https://henriquelucasdf.github.io/images/cols_fin.png" alt=""></p>
+<h2 id="60-elaboração-dos-modelos-de-machine-learning">6.0 Elaboração dos Modelos de Machine Learning</h2>
+<p>Esta etapa foi dividida em 3 partes:</p>
+<ol>
+<li>Escolha das métricas de performance.</li>
+<li>Escolha dos modelos de Machine Learning.</li>
+<li>Cross-Validation dos modelos.</li>
+</ol>
+<h4 id="1-métricas-de-performance">1. Métricas de performance</h4>
+<p>As seguintes métricas foram escolhidas para avaliar os resultados da modelagem:</p>
+<ul>
+<li>
+<p><strong>Mean Absolute Error (MAE):</strong> O erro médio absoluto mostra quanto o modelo está errando na média. Sua unidade de medida é a mesma da previsão utilizada, em nosso caso, Dólar. Devido a isso, o MAE é uma boa métrica do ponto de vista do negócio já que demonstra imediatamente o impacto financeiro da predição, além de ser de fácil entendimento. Além disso, essa métrica é robusta a outliers, o que no nosso caso é algo positivo.</p>
+</li>
+<li>
+<p><strong>Mean Absolute Percentage Error (MAPE):</strong> Esta métrica é análoga ao MAE, mas retornando valores de erros percentuais. A grande desvantagem do MAPE é que ele não pode ser utilizado quando temos valores nulos, o que não é nosso caso nesse projeto.</p>
+</li>
+<li>
+<p><strong>Root Mean Squared Error (RMSE):</strong> O RMSE indica a raiz do erro quadrático médio, sendo uma métrica bastante sensível a outliers. Devido a isso,  o RMSE é uma excelente métrica para a performance do modelo de Machine Learning, sendo mais rigorosa com os erros do que o MAE/MAPE.</p>
+</li>
+<li>
+<p><strong>Mean Percentage Error (MPE):</strong> o erro percentual médio é uma boa métrica para indicar se um modelo está sub ou superestimando as previsões realizadas. Valores positivos de MPE indica que o modelo está subestimando valores, enquanto valores negativos indicam uma superestimação.</p>
+</li>
+</ul>
+<h4 id="2-escolha-dos-modelos-de-machine-learning">2. Escolha dos modelos de Machine Learning:</h4>
+<p>Para realizar as predições, quatro modelos serão testados:</p>
+<ul>
+<li>
+<p><strong>Regressão linear:</strong> o modelo de regressão linear é um modelo extremamente simples e será utilizado como um <strong>Baseline</strong> para nosso projeto. Dada a distribuição da variável alvo e das próprias conclusões da Análise Exploratória de Dados, é evidente que este modelo não apresentará resultados satisfatórios, sendo utilizado apenas como um guia para as outras implementações.</p>
+</li>
+<li>
+<p><strong>Regressão Linear Regularizada (Lasso):</strong> o modelo Lasso é um avanço do modelo anterior, já que adiciona novos parâmetros capazes de realizar uma regularização da reta de regressão. Existem outros modelos de regressão regularizada, como o Ridge e o ElasticNet, mas nesse projeto vamos nos ater apenas ao Lasso.</p>
+</li>
+<li>
+<p><strong>RandomForest Regressor:</strong> Este modelo é uma poderosa ferramenta tanto de classificação como de regressão. A RandomForest consiste em um Ensemble de múltiplas árvores de decisão através de uma agregação do tipo Bootstrap (Bagging), em que cada uma das árvores de decisão é treinada em diferentes amostras dos dados, e o resultado do modelo é um agrupamento do resultado de cada árvore.</p>
+</li>
+<li>
+<p><strong>XGBoost Regressor:</strong> este modelo é uma implementação avançada do algoritmo Gradient Boosting, altamente sofisticado e capaz de lidar como todo tipo de irregularidade nos dados. O XGboost é um modelos fácil de usar, apesar de possuir diversos parâmetros que podem ser personalizados. Tal modelo é capaz de regularizar dados, possui alta flexibilidade, suporta processamentos paralelos, lida bem com valores NAs, entre outras vantagens.</p>
+</li>
+</ul>
+<h4 id="3-cross-validation">3. Cross-Validation</h4>
+<p>Para medir a real performance de um algoritmo de Machine Learning, é necessário realizar a cross-validation de nossos modelos. Este método consiste em um algoritmo que mede a performance dos modelos ao longo de toda a extensão dos dados, dividindo-o em subsets (k-folds). Um desses folds servirá como dados de validação, enquanto o restante dos dados será utilizado para treinar o modelo e, subsequentemente, realizar a previsão desejada, comparando-a com os dados do substet de validação. Após isso, outro subset é escolhido e o processo se repete, pelo número de vezes que o projetista achar necessário.</p>
+<p>Neste projeto, a data foi utilizada como um indicador para os splits. No primeiro K-Fold, as últimas 6 semanas dos dados de treino foram utilizadas como validação, sendo o modelo treinado no restante dos dados. Para o segundo K-Fold, atrasamos mais 6 semanas, utilizando-as como validação e o restante como treino. Esse processo se repete até o K-Fold 5, número suficiente para avaliar a performance do modelo.</p>
+<h3 id="61-performance-dos-modelos">6.1 Performance dos modelos:</h3>
+<p>Abaixo é possível visualizar a performance de cada um dos quatro modelos utilizados:</p>
+<p><img src="https://henriquelucasdf.github.io/images/modelos_cv.png" alt=""></p>
+<p>Percebe-se que os modelos RandomForest e XGBoost apresentaram as melhores performances, com RMSEs de 1254.45 e 1455.64 na cross-validation, respectivamente. O pior modelo foi o LASSO, com RMSE de 3057.75.</p>
+<p>Como o modelo XGBoost é capaz de treinar modelos muito mais rápido que a RandomForest, possui suporte para aceleração em GPU e apresentou resultados não muito diferentes, esse modelo será utilizado para realizar a previsão de vendas final.</p>
+<h2 id="70-otimização-dos-hiperparâmetros">7.0 Otimização dos Hiperparâmetros</h2>
+<p>Nesta etapa do projeto, o objetivo é encontrar os melhores parâmetros que maximizam a performance do nosso modelo XGBoost. Para realizar esta tarefa, um algoritmo de <strong>busca aleatória</strong> foi utilizado para minimizar o valor RMSE encontrado na cross-validation.</p>
+<p>Os seguintes parâmetros foram otimizados:</p>
+<ul>
+<li><strong>n_estimators:</strong> É o número de árvores do modelo. Foi escolhido um range de 1000 a 3000 árvores para esse parâmetro.</li>
+<li><strong>eta:</strong> É a taxa de aprendizado do modelo. Quanto menor melhor, pois previne o overfitting. Uma distribuição &ldquo;log-uniform&rdquo; de valores entre 0.001 a 0.03 foi atribuído para este parâmetro.</li>
+<li><strong>max_depth:</strong> Define a profundidade máxima de uma árvore. Quanto mais profunda, mais complexo o modelo se torna, mas isso pode levar ao overfit. Um espaço uniforme de valores de 3 a 9 foram atribuídos para este item.</li>
+<li><strong>subsample:</strong> É a porção de amostras de treino do modelo. É utilizado para evitar o overfitting. Neste parâmetro, valores entre 0.1 a 0.7 foram atribuídos.</li>
+<li><strong>colsample_bytree:</strong> Representa a proporção de features para cada árvore. Optou-se por um range de 0.3 a 0.9.</li>
+<li><strong>min_child_weight:</strong> É o peso necessário para criar um novo nó em uma árvore. Quanto menor, mais complexo se torna o modelo, mas tende a causar overfitting. Valores de 3 a 8 foram atribuídos.</li>
+<li><strong>objective:</strong> define o método de aprendizado do modelo. <strong>&ldquo;reg:squarederror&rdquo;</strong> foi escolhido.</li>
+<li><strong>tree_method:</strong> Permite a aceleração por GPU, através do valor <strong>&ldquo;gpu_hist&rdquo;</strong>.</li>
+</ul>
+<p>Este <a href="https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/">link</a> mostra detalhadamente como fazer a otimização dos hiperparâmetros no XGBoost, incluindo a indicação dos valores aqui adotados.</p>
+<p>Após 100 interações realizadas, os melhores parâmetros encontrados para o modelo foram:</p>
+<ul>
+<li><strong>n_estimators:</strong> 1542</li>
+<li><strong>eta:</strong> 0.0075</li>
+<li><strong>max_depth:</strong> 9</li>
+<li><strong>subsample:</strong> 0.6747</li>
+<li><strong>colsample_bytree:</strong> 0.62</li>
+<li><strong>min_child_weight:</strong> 7</li>
+</ul>
+<p>Com esses valores, o modelo apresentou as seguintes métricas para a cross-validation:
+<img src="https://henriquelucasdf.github.io/images/tuned_model.png" alt=""></p>
+<p>Sendo assim, pode-se observar uma redução de aproximadamente 20% no valor do RMSE e do MAPE, o que é um resultado excelente conseguido apenas com a otimização dos hiperparâmetros.</p>
+<h2 id="80-validação-com-os-dados-de-teste">8.0 Validação com os dados de teste</h2>
+<p>Com o modelo pronto, podemos realizar a validação final do projeto, utilizando agora os dados de teste separados no ínicio do item <a href="#40-prepara%C3%A7%C3%A3o-dos-dados">4.1</a>.</p>
+<p>Realizando as previsões com o X_teste e comparando-as com o y_teste, obtemos:</p>
+<p><img src="https://henriquelucasdf.github.io/images/teste_val.png" alt=""></p>
+<p>A partir desse resultado, podemos concluir que o modelo projetado apresentou ótimos resultados, com baixos erros médios e previsões coerentes com a realidade. Além disso, como o MPE é positivo, podemos concluir que para este conjunto de dados, o modelo está subestimando os valores.</p>
+<p>Iremos detalhar esta previsão final no próximo tópico, avaliando a performance do modelo para todas as lojas.</p>
+<h3 id="81-performance-do-modelo-de-machine-learning">8.1 Performance do modelo de Machine Learning</h3>
+<p>Pode-se visualizar os erros MAPE e RMSE para cada uma das lojas no gráfico de dispersão abaixo:</p>
+<p><img src="https://henriquelucasdf.github.io/images/erro_teste.png" alt=""></p>
+<p>Observa-se que para a grande maioria das lojas os erros apresentam valores satisfatórios, com valores abaixo de 20% para o MAPE e de 2000 para o RMSE. Entretanto, algumas das lojas apresentam grandes distorções, com MAPE acima do 50%. Para estas lojas, uma investigação mais aprofundada deveria ser realizada.</p>
+<p>Pode-se ainda visualizar a dispersão dos erros:</p>
+<p><img src="https://henriquelucasdf.github.io/images/disp_erro.png" alt=""></p>
+<ul>
+<li>
+<p>No primeiro gráfico, podemos observar a diferença data a data entre as previsões e as vendas reais. Conclui-se que o modelo conseguiu captar bem o comportamento das vendas durante essas seis semanas, com as maiores distorções ocorrendo nas semanas com início no dia 8 e no meio da semana com início no dia 15.</p>
+</li>
+<li>
+<p>O segundo gráfico, no canto superior direito, mostra a taxa de erro. Ou seja, a razão entre a previsão e o valor real. Pode-se observar que a maioria dos valores se situam abaixo dos 10% de erro, com outliers aparecendo nas semanas citadas anteriormente. Ressalta-se que o maior valor para a taxa de erro é de 0.85, o que é um valor razoável.</p>
+</li>
+<li>
+<p>Considera-se como um bom modelo de Machine Learning aquele que produz resíduos normalmente distribuídos e com média nula. Observando o histograma dos erros no terceiro gráfico, vemos que o nosso modelo atende essa premissa, com grande parte dos valores centrados em zero e com um formato semelhante à gaussiana.</p>
+</li>
+<li>
+<p>Já no último gráfico, podemos visualizar a dispersão do erro. Observa-se que os resíduos se concentram em formato tunelar, com erros entre +/- US$ 10.000,00. Apesar da presença de alguns outliers, podemos concluir que temos um ótimo modelo de machine learning.</p>
+</li>
+</ul>
+<h3 id="82-performance-de-negócio">8.2 Performance de negócio</h3>
+<p>Antes de colocar o modelo em produção, temos que organizar as previsões para cada loja. Desta forma, agrupamos as previsões de vendas das 6 semanas por loja, obtendo o valor final para cada uma delas. Além disso, obtemos os erros MAE e MAPE por loja e somamos e subtraímos o MAE das previsões realizadas, obtendo-se o melhor e o pior cenário, respectivamente. Exemplos das previsões podem ser visualizadas na tabela e no gráfico de dispersão abaixo.</p>
+<p><img src="https://henriquelucasdf.github.io/images/tab_predi.png" alt="">
+<img src="https://henriquelucasdf.github.io/images/predi.png" alt=""></p>
+<p>Somando todas as previsões, temos uma previsão de vendas de US$ 283,881,088.00, sendo US$ 283,178,826.98 para o pior cenário e US$ 284,583,373.63 para o melhor cenário.</p>
+<h2 id="90-deploy-do-modelo-em-produção">9.0 Deploy do modelo em produção</h2>
 <ul class="pa0">
   
    <li class="list">
@@ -651,10 +772,6 @@ df_treino, df_teste = df_treino.align(df_teste,join='left',axis=1)
   
    <li class="list">
      <a href="https://henriquelucasdf.github.io/tags/gpu-acceleration" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">GPU Acceleration</a>
-   </li>
-  
-   <li class="list">
-     <a href="https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Otimização Bayesiana</a>
    </li>
   
    <li class="list">
