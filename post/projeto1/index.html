@@ -6,8 +6,8 @@
     
     <title>Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada. | Henrique Lucas</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
-Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do cientista de dados brasileiro Meigarom Lopes.">
+    <meta name="description" content="Introdução: Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
+Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste link do Google Colab.">
     <meta name="generator" content="Hugo 0.78.1" />
     
     
@@ -31,26 +31,26 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
     
     
     <meta property="og:title" content="Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada." />
-<meta property="og:description" content="Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
-Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do cientista de dados brasileiro Meigarom Lopes." />
+<meta property="og:description" content="Introdução: Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
+Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste link do Google Colab." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://henriquelucasdf.github.io/post/projeto1/" />
 <meta property="article:published_time" content="2020-11-07T10:58:08-03:00" />
 <meta property="article:modified_time" content="2020-11-07T10:58:08-03:00" />
 <meta itemprop="name" content="Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada.">
-<meta itemprop="description" content="Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
-Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do cientista de dados brasileiro Meigarom Lopes.">
+<meta itemprop="description" content="Introdução: Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
+Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste link do Google Colab.">
 <meta itemprop="datePublished" content="2020-11-07T10:58:08-03:00" />
 <meta itemprop="dateModified" content="2020-11-07T10:58:08-03:00" />
-<meta itemprop="wordCount" content="4277">
+<meta itemprop="wordCount" content="5272">
 
 
 
 <meta itemprop="keywords" content="Previsão de Vendas,Modelo em Produção,XGBoost,RandomForest,GPU Acceleration,Bot telegram," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada."/>
-<meta name="twitter:description" content="Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
-Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do cientista de dados brasileiro Meigarom Lopes."/>
+<meta name="twitter:description" content="Introdução: Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
+Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste link do Google Colab."/>
 
 	
   </head>
@@ -185,16 +185,18 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 
       
       
-        <span class="f6 mv4 dib tracked"> - 21 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 4277 words</span>
+        <span class="f6 mv4 dib tracked"> - 25 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 5272 words</span>
       
     </header>
-    <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h2 id="introdução">Introdução</h2>
-<p>Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.</p>
-<p>Este projeto foi baseado no curso <a href="https://sejaumdatascientist.com/como-ser-um-data-scientist/">&ldquo;Data Science em Produção&rdquo;</a>, do cientista de dados brasileiro Meigarom Lopes.</p>
-<p>Os dados para a realização desse projeto foram obtidos de uma competição do <a href="https://www.kaggle.com/c/rossmann-store-sales">Kaggle</a>.</p>
+    <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h2 id="introdução">Introdução:</h2>
+<p>Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. <strong>O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas.</strong> Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.</p>
+<p><strong>Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste <a href="https://colab.research.google.com/drive/11DTze43r1dNT3nioWi9k327evYOrS9pj?usp=sharing">link</a> do Google Colab.</strong></p>
+<p>Todos os dados e algoritmos utilizados estão disponíveis neste <a href="https://github.com/henriquelucasdf/Previsao_vendas_rossmann">repositório</a>.</p>
+<p>Este projeto foi baseado no curso <a href="https://sejaumdatascientist.com/como-ser-um-data-scientist/">&ldquo;Data Science em Produção&rdquo;</a>, do cientista de dados brasileiro Meigarom Lopes. Os dados para a realização desse projeto foram obtidos de uma competição do <a href="https://www.kaggle.com/c/rossmann-store-sales">Kaggle</a>.</p>
 <p><strong>Conteúdo:</strong></p>
 <ul>
+<li><a href="#resumo">Resumo</a></li>
 <li><a href="#10-prepara%C3%A7%C3%A3o-dos-dados">1.0 Preparação dos Dados</a></li>
 <li><a href="#20-feature-engineering">2.0 Feature Engineering</a></li>
 <li><a href="#30-an%C3%A1lise-explorat%C3%B3ria-de-dados-eda">3.0 Análise Exploratória de Dados (EDA)</a></li>
@@ -204,7 +206,100 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 <li><a href="#70-otimiza%C3%A7%C3%A3o-dos-hiperpar%C3%A2metros">7.0 Otimização dos Hiperparâmetros</a></li>
 <li><a href="#80-valida%C3%A7%C3%A3o-com-os-dados-de-teste">8.0 Validação com os Dados de Teste</a></li>
 <li><a href="#90-deploy-do-modelo-em-produ%C3%A7%C3%A3o">9.0 Deploy do Modelo em Produção</a></li>
+<li><a href="#conclus%C3%B5es">Conclusões</a></li>
 </ul>
+<p>Abaixo temos um resumo dos principais tópicos desse projeto. Todos os detalhes e as principais explicações de cada decisão tomada estão disponíveis a partir do <a href="#10-prepara%C3%A7%C3%A3o-dos-dados">item 1.0</a>.</p>
+<h2 id="resumo">Resumo</h2>
+<ul>
+<li>
+<p><strong>1.0 Preparação dos dados:</strong></p>
+<ul>
+<li>
+<p><strong>Dimensão dos dados:</strong></p>
+<ul>
+<li>Dataset de treino: (969.264 x 18)</li>
+<li>Dataset de teste: (47.945 x 18)</li>
+<li>Datas:
+<ul>
+<li>Início: 01-01-2013.</li>
+<li>Fim: 31-07-2015.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Limpeza dos dados:</strong> Quase todas as variáveis que apresentaram NAs são relacionadas com a coluna <strong>date</strong>, sendo este valor utilizado para preencher os valores NA nestes casos. A feature <strong>competition_distance</strong> também apresentou NAs, mas foi considerado que isso ocorria por uma ausência de competidores próximos, sendo utilizado um valor de alta grandeza para preenchê-los.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>2.0 Feature Engineering:</strong> Para guiar a etapa de Feature Engineering, uma lista de hipóteses de negócio foi criada. 11 hipóteses foram elaboradas e serão validadas posteriormente na etapa de Análise Exploratória de Dados.</p>
+<ul>
+<li>
+<p>A variável <strong>date</strong> foi utilizada para criar novas colunas com dados temporais. Foram derivadas as seguintes features: <strong>promo2_time_week</strong>, <strong>promo2_time_month</strong>, <strong>competition_since_month</strong>, <strong>day,  month, year_week</strong> e <strong>is_weekday</strong>.</p>
+</li>
+<li>
+<p>Foram excluídas as colunas <strong>customers, open, promo_interval</strong> e <strong>month_map</strong>.</p>
+</li>
+<li>
+<p>Dados com lojas fechadas ou sem faturamento foram desconsiderados.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>3.0 Análise Exploratória de Dados (EDA):</strong> Análises univariadas, bivariadas e multivariadas foram elaboradas. A lista de hipóteses de negócio foi validada:</p>
+<p><img src="https://henriquelucasdf.github.io/images/resumo_h.png" alt=""></p>
+</li>
+<li>
+<p><strong>4.0 Preparação dos Dados:</strong> Nesta etapa, utilizamos os algoritmos MinMaxScaler e RobustScaler para fazer o Rescaling de algumas das variáveis numéricas. Para os dados categóricos, realizamos o Encoding através do OneHotEncoder, LabelEncoder e Ordinal Enconder. A coluna alvo, <strong>sales</strong>, passou por uma transformação logarítmica. Além disso, as features temporais que possuíam característica cíclica foram passadas para coordenadas polares para explicitar essa característica ao modelo.</p>
+</li>
+<li>
+<p><strong>5.0 Seleção de Features:</strong> Nesta seção, o algoritmo <strong>Boruta</strong> foi utilizado para selecionar as melhores variáveis para o modelo. Após isso, considerações de projeto foram feitas e ao final, 22 features foram selecionadas.</p>
+</li>
+<li>
+<p><strong>6.0 Elaboração do Modelo de Machine Learning:</strong> 4 modelos foram selecionados para este projeto. a) Regressão Linear (baseline); b) Regressão Linear Regularizada (Lasso); c) RandomForestRegressor; d) XGBoostRegressor.</p>
+<ul>
+<li>A cross-validation de cada um deles foi elaborada e obteve-se o seguinte resultado:</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/modelos_cv.png" alt=""></p>
+<ul>
+<li>O modelo XGBoost foi selecionado por apresentar uma performance semelhante à RandomForest, mas com uma velocidade de treino muito superior, suporte à aceleração por GPUs e maior flexibilidade.</li>
+</ul>
+</li>
+<li>
+<p><strong>7.0 Otimização dos Hiperparâmetros:</strong> Uma busca aleatória foi realizada para otimizar os hiperparâmetros do modelo XGBoost. Após isso, os valores foram obtidos na cross-validation, sendo possível observar uma redução de 20% da métrica RMSE.</p>
+<p><img src="https://henriquelucasdf.github.io/images/tuned_model.png" alt=""></p>
+</li>
+<li>
+<p><strong>8.0 Validação com os Dados de Teste:</strong> Com o modelo final pronto, os dados de teste foram utilizados para a validação das previsões. As métricas de performance podem ser visualizadas abaixo:</p>
+<p><img src="https://henriquelucasdf.github.io/images/teste_val.png" alt=""></p>
+<ul>
+<li>
+<p>Observou-se ainda a dispersão dos erros, provando a acurácia do modelo para estes dados:</p>
+<p><img src="https://henriquelucasdf.github.io/images/disp_erro.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>9.0 Deploy do Modelo em Produção:</strong> A biblioteca <strong>Flask</strong> e o servidor <strong>Heroku</strong> foram utilizados para fazer o deploy do modelo. Um bot no Telegram foi criado para que qualquer pessoa seja capaz de acessar as previsões para cada uma das lojas. O modelo em produção funcionará da seguinte forma:</p>
+<ul>
+<li>
+<p>O usuário realizará requisições à API através do Telegram, enviando o número da loja que ele deseja receber as previsões de vendas.</p>
+</li>
+<li>
+<p>Um API receberá o número da loja e carregará o dataset de teste. Os dados serão preparados e será gerada a previsão para a loja solicitada com o modelo XGBoost.</p>
+</li>
+<li>
+<p>Por fim, a API retornará as previsões de vendas solicitadas para o usuário através do Bot no Telegram.</p>
+</li>
+<li>
+<p>Abaixo podemos visualizar o Bot do Telegram em funcionamento:</p>
+<p><img src="https://henriquelucasdf.github.io/images/bot_gif.gif" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h2 id="10-preparação-dos-dados">1.0 Preparação dos Dados</h2>
 <h4 id="11-renomeando-as-colunas">1.1. Renomeando as colunas</h4>
 <p>Inicialmente, para padronizar os dados as serem trabalhados, utilizou-se a biblioteca Inflection para converter as colunas para &ldquo;snakecase&rdquo;.</p>
@@ -308,7 +403,6 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 <li><strong>promo_interval:</strong> Os valores NA foram preenchidos com zero, já que o NA indica que a loja não está participando da &ldquo;promo2&rdquo;. Ressalta-se que esta variável foi utilizada para derivar a coluna &ldquo;is_promo&rdquo;, indicando se uma loja está participando ou não da promoção. A coluna promo_interval será excluída posteriormente.</li>
 </ul>
 <p>Como as colunas <strong>&ldquo;competition_open_since_month&rdquo;, &ldquo;competition_open_since_year&rdquo;, &ldquo;promo2_since_week&rdquo; e &ldquo;promo2_since_year&rdquo;</strong> se referem a datas, não existe uma abordagem ideal para imputar valores nas linhas contendo NAs. Desta forma, a coluna &ldquo;date&rdquo; foi utilizada como suporte para preencher estes valores.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="20-feature-engineering">2.0 Feature Engineering</h2>
 <p>Nesta etapa, é necessário criarmos novas variáveis para o nosso modelo, buscando a maximização de sua performance. Uma boa abordagem para realizar esta tarefa é observar as necessidades da empresa em questão, elaborando diversas hipóteses de negócio que guiarão a obtenção das features e serão posteriormente validadas na Análise Exploratória de Dados.</p>
 <h4 id="21-criação-de-hipóteses-de-negócio">2.1 Criação de hipóteses de negócio</h4>
@@ -375,7 +469,7 @@ Este projeto foi baseado no curso &ldquo;Data Science em Produção&rdquo;, do c
 <p><strong>Filtragem de linhas:</strong> entradas com lojas fechadas ou com lojas sem faturamento foram excluídas, já que ambos os casos são irrelevantes para a previsão de vendas.</p>
 </li>
 <li>
-<p><strong>Filtragem de colunas:</strong> variáveis que não estarão disponíveis no momento da previsão devem ser excluídas. A coluna <strong>&ldquo;customers&rdquo;</strong> poderia ser prevista, mas seria necessário um outro projeto de regressão apenas para isso. Desta forma, forma excluídas as colunas <strong>&ldquo;customers&rdquo;, &ldquo;open&rdquo;, &ldquo;promo_interval&rdquo; e &ldquo;month_map&rdquo;</strong>.</p>
+<p><strong>Filtragem de colunas:</strong> variáveis que não estarão disponíveis no momento da previsão devem ser excluídas. A coluna <strong>&ldquo;customers&rdquo;</strong> poderia ser prevista, mas seria necessário um outro projeto de regressão apenas para isso. Desta forma, foram excluídas as colunas <strong>&ldquo;customers&rdquo;, &ldquo;open&rdquo;, &ldquo;promo_interval&rdquo; e &ldquo;month_map&rdquo;</strong>.</p>
 </li>
 </ul>
 <h2 id="30-análise-exploratória-de-dados-eda">3.0 Análise Exploratória de Dados (EDA)</h2>
@@ -752,6 +846,37 @@ df_treino, df_teste = df_treino.align(df_teste,join='left',axis=1)
 <img src="https://henriquelucasdf.github.io/images/predi.png" alt=""></p>
 <p>Somando todas as previsões, temos uma previsão de vendas de US$ 283,881,088.00, sendo US$ 283,178,826.98 para o pior cenário e US$ 284,583,373.63 para o melhor cenário.</p>
 <h2 id="90-deploy-do-modelo-em-produção">9.0 Deploy do modelo em produção</h2>
+<p>Neste tópico, iremos colocar o nosso modelo em produção para torná-lo acessível para qualquer interessado. Utilizaremos a biblioteca <strong>Flask</strong> e o servidor <strong>Heroku</strong> para disponibilizá-lo na nuvem. Além disso, criaremos um bot no Telegram para que qualquer pessoa seja capaz de acessar as previsões para cada uma das lojas.</p>
+<p>Para implementarmos o deploy, seguimos 5 passos:</p>
+<ol>
+<li>Salvarmos o modelo XGBoost otimizado, os Encoders e todos os pré-processamentos necessários para os dados de teste de forma serializada, através da biblioteca <strong>Pickle</strong>.</li>
+<li>Construir um API Handler (handler.py)</li>
+<li>Contruir o algoritmo para preparar os dados (Rossmann.py)</li>
+<li>Construir um API para gerar requisições (bot no telegram)</li>
+<li>Colocar o modelo na nuvem.</li>
+</ol>
+<p>O modelo em produção funcionará da seguinte forma:</p>
+<ul>
+<li>O usuário realizará requisições à API através do Telegram, enviando o número da loja que ele deseja receber as previsões de vendas.</li>
+<li>O API Rossmann receberá o número da loja e carregará o dataset de teste, enviando as informações para o API Handler.</li>
+<li>O API Handler realizará a preparação dos dados e gerará as previsões com o modelo XGBoost, retornando-as para o API Rossmann.</li>
+<li>Então, o API Rossmann enviará as previsões de vendas para o usuário através do Bot no Telegram.</li>
+</ul>
+<p>Os códigos utilizados para fazer o deploy do modelo e o Bot no telegram estão disponíveis no <a href="https://github.com/henriquelucasdf/Previsao_vendas_rossmann">repositório</a> deste projeto, nas pastas &ldquo;webapp&rdquo; e &ldquo;rossmann-telegram-api&rdquo;.</p>
+<p>A documentação para a criação de bots para o Telegram pode ser acessada nesse <a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot">link</a>.</p>
+<p>Abaixo podemos visualizar o bot em funcionamento, recebendo as requisições e retornando as predições.</p>
+<p><img src="https://henriquelucasdf.github.io/images/bot_gif.gif" alt=""></p>
+<h2 id="conclusões">Conclusões</h2>
+<p>Neste projeto, todos os passos para colocar um projeto completo de Data Science em produção foram seguidos. Utilizando o algoritmo XGBoost, um modelo satisfatório foi elaborado para realizar a previsão de vendas para as lojas da empresa Rossmann, além de ter sido obtido diversas informações importantes na Análise Exploratória de Dados. Outra etapa em destaque foi o deploy do modelo na nuvem e o uso do Bot no telegram, etapas que, acredito eu, sejam o diferencial deste projeto.</p>
+<p>Para a melhoria deste projeto, acredito que as seguintes tarefas são necessárias:</p>
+<ul>
+<li>Estudo mais detalhado sobre as lojas que apresentaram métricas de desempenho não satisfatório.</li>
+<li>Elaboração de Novas Features.</li>
+<li>Testar outros modelos de regressão e a possibilidade de realizar um Ensemble entre eles.</li>
+<li>Um modelo de previsão para a quantidade de clientes.</li>
+<li>Testar uma abordagem auto-regressiva para o projeto.</li>
+</ul>
+<hr>
 <ul class="pa0">
   
    <li class="list">

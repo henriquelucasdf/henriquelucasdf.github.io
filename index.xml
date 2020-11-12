@@ -13,8 +13,8 @@
       <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/post/projeto1/</guid>
-      <description>Introdução Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
-Este projeto foi baseado no curso &amp;ldquo;Data Science em Produção&amp;rdquo;, do cientista de dados brasileiro Meigarom Lopes.</description>
+      <description>Introdução: Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
+Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste link do Google Colab.</description>
     </item>
     
     <item>
