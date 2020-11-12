@@ -6,11 +6,11 @@
     <description>Recent content in Tags on Henrique Lucas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bot telegram</title>
       <link>https://henriquelucasdf.github.io/tags/bot-telegram/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/bot-telegram/</guid>
       <description></description>
@@ -19,7 +19,7 @@
     <item>
       <title>GPU Acceleration</title>
       <link>https://henriquelucasdf.github.io/tags/gpu-acceleration/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/gpu-acceleration/</guid>
       <description></description>
@@ -28,7 +28,7 @@
     <item>
       <title>Modelo em Produção</title>
       <link>https://henriquelucasdf.github.io/tags/modelo-em-produ%C3%A7%C3%A3o/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/modelo-em-produ%C3%A7%C3%A3o/</guid>
       <description></description>
@@ -37,7 +37,7 @@
     <item>
       <title>Previsão de Vendas</title>
       <link>https://henriquelucasdf.github.io/tags/previs%C3%A3o-de-vendas/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/previs%C3%A3o-de-vendas/</guid>
       <description></description>
@@ -46,7 +46,7 @@
     <item>
       <title>RandomForest</title>
       <link>https://henriquelucasdf.github.io/tags/randomforest/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/randomforest/</guid>
       <description></description>
@@ -55,9 +55,54 @@
     <item>
       <title>XGBoost</title>
       <link>https://henriquelucasdf.github.io/tags/xgboost/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/xgboost/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Análise Exploratória de Dados</title>
+      <link>https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados/</link>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cross-Validation</title>
+      <link>https://henriquelucasdf.github.io/tags/cross-validation/</link>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/cross-validation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Otimização Bayesiana</title>
+      <link>https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana/</link>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prophet</title>
+      <link>https://henriquelucasdf.github.io/tags/prophet/</link>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/prophet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series</title>
+      <link>https://henriquelucasdf.github.io/tags/time-series/</link>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/time-series/</guid>
       <description></description>
     </item>
     

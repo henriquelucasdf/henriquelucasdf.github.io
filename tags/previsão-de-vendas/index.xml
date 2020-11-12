@@ -6,15 +6,25 @@
     <description>Recent content in Previsão de Vendas on Henrique Lucas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/previs%C3%A3o-de-vendas/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/previs%C3%A3o-de-vendas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Projeto 1 - Previsão de vendas utilizando um modelo de regressão multivariada.</title>
       <link>https://henriquelucasdf.github.io/post/projeto1/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 12 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/post/projeto1/</guid>
       <description>Introdução: Este projeto consiste em uma previsão de vendas para a cadeia de drogarias alemã Rossmann. O objetivo final é prever quanto cada uma de suas lojas irá faturar em uma janela temporal de 6 semanas. Os resultados serão disponibilizados através de um Bot no Telegram, onde os possíveis interessados poderão acessá-los de qualquer smartphone.
 Caso queira visualizar o notebook utilizado para a realização deste projeto, ele está disponível neste link do Google Colab.</description>
+    </item>
+    
+    <item>
+      <title>Projeto 2 - Previsão de vendas utilizando Time Series</title>
+      <link>https://henriquelucasdf.github.io/post/projeto2/</link>
+      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/post/projeto2/</guid>
+      <description>Introdução Este projeto consiste em uma previsão de vendas para o mês de dezembro de uma loja do ramo de bijuterias localizada no Distrito Federal. Trata-se de uma franqueada que está há 10 anos no mercado, com um market share consolidado e que já empregou dezenas de pessoas.
+No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma previsão das vendas para esta loja além de uma análise exploratória dos dados.</description>
     </item>
     
   </channel>
