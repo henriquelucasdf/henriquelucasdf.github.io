@@ -64,7 +64,7 @@
     <item>
       <title>Análise Exploratória de Dados</title>
       <link>https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados/</guid>
       <description></description>
@@ -73,16 +73,34 @@
     <item>
       <title>Cross-Validation</title>
       <link>https://henriquelucasdf.github.io/tags/cross-validation/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/cross-validation/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Feature Engineering</title>
+      <link>https://henriquelucasdf.github.io/tags/feature-engineering/</link>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/feature-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hipóteses de Negócio</title>
+      <link>https://henriquelucasdf.github.io/tags/hip%C3%B3teses-de-neg%C3%B3cio/</link>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/tags/hip%C3%B3teses-de-neg%C3%B3cio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Otimização Bayesiana</title>
       <link>https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana/</guid>
       <description></description>
@@ -91,7 +109,7 @@
     <item>
       <title>Prophet</title>
       <link>https://henriquelucasdf.github.io/tags/prophet/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/tags/prophet/</guid>
       <description></description>
@@ -100,18 +118,9 @@
     <item>
       <title>Time Series</title>
       <link>https://henriquelucasdf.github.io/tags/time-series/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
-      
-      <guid>https://henriquelucasdf.github.io/tags/time-series/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tags</title>
-      <link>https://henriquelucasdf.github.io/tags/tags/</link>
       <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
       
-      <guid>https://henriquelucasdf.github.io/tags/tags/</guid>
+      <guid>https://henriquelucasdf.github.io/tags/time-series/</guid>
       <description></description>
     </item>
     

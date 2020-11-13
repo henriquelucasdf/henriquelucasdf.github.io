@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Engineering on Henrique Lucas</title>
+    <link>https://henriquelucasdf.github.io/tags/feature-engineering/</link>
+    <description>Recent content in Feature Engineering on Henrique Lucas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/feature-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Projeto 2 - Análise Exploratória de Dados para uma loja varejista do ramo de bijuterias</title>
+      <link>https://henriquelucasdf.github.io/post/projeto2/</link>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/post/projeto2/</guid>
+      <description>Introdução Este projeto consiste em uma análise exploratória de dados de uma loja do ramo de bijuterias localizada no Distrito Federal. Trata-se de uma franqueada que está há 10 anos no mercado, com um market share consolidado e que já empregou dezenas de pessoas.
+No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma análise exploratória de dados desta loja além de uma previsão das vendas.</description>
+    </item>
+    
+  </channel>
+</rss>

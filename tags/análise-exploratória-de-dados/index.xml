@@ -6,13 +6,23 @@
     <description>Recent content in Análise Exploratória de Dados on Henrique Lucas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Nov 2020 10:58:08 -0300</lastBuildDate><atom:link href="https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Projeto 2 - Previsão de vendas utilizando Time Series</title>
+      <title>Projeto 2 - Análise Exploratória de Dados para uma loja varejista do ramo de bijuterias</title>
       <link>https://henriquelucasdf.github.io/post/projeto2/</link>
-      <pubDate>Sat, 07 Nov 2020 10:58:08 -0300</pubDate>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
       
       <guid>https://henriquelucasdf.github.io/post/projeto2/</guid>
+      <description>Introdução Este projeto consiste em uma análise exploratória de dados de uma loja do ramo de bijuterias localizada no Distrito Federal. Trata-se de uma franqueada que está há 10 anos no mercado, com um market share consolidado e que já empregou dezenas de pessoas.
+No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma análise exploratória de dados desta loja além de uma previsão das vendas.</description>
+    </item>
+    
+    <item>
+      <title>Projeto 3 - Previsão de vendas utilizando Time Series</title>
+      <link>https://henriquelucasdf.github.io/post/projeto3/</link>
+      <pubDate>Thu, 05 Nov 2020 10:58:08 -0300</pubDate>
+      
+      <guid>https://henriquelucasdf.github.io/post/projeto3/</guid>
       <description>Introdução Este projeto consiste em uma previsão de vendas para o mês de dezembro de uma loja do ramo de bijuterias localizada no Distrito Federal. Trata-se de uma franqueada que está há 10 anos no mercado, com um market share consolidado e que já empregou dezenas de pessoas.
 No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma previsão das vendas para esta loja além de uma análise exploratória dos dados.</description>
     </item>
