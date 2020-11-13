@@ -42,7 +42,7 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma análise exploratória de dados desta loja além de uma previsão das vendas.">
 <meta itemprop="datePublished" content="2020-11-05T10:58:08-03:00" />
 <meta itemprop="dateModified" content="2020-11-05T10:58:08-03:00" />
-<meta itemprop="wordCount" content="985">
+<meta itemprop="wordCount" content="1320">
 
 
 
@@ -185,8 +185,8 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 
       
       
-        <span class="f6 mv4 dib tracked"> - 5 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 985 words</span>
+        <span class="f6 mv4 dib tracked"> - 7 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1320 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h1 id="introdução">Introdução</h1>
@@ -200,7 +200,7 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 <li><a href="#10-an%C3%A1lise-inicial-dos-dados">1.0 Análise Inicial dos Dados</a></li>
 <li><a href="#20-cria%C3%A7%C3%A3o-de-hip%C3%B3teses-de-neg%C3%B3cio">2.0 Criação de Hipóteses de Negócio</a></li>
 <li><a href="#30-feature-engineering">3.0 Feature Engineering</a></li>
-<li><a href="#40-an%C3%A1lise-explorat%C3%B3ria-de-dados-eda">4.0 Análise Exploratória de Dados (EDA)</a></li>
+<li><a href="#40-an%C3%A1lise-explorat%C3%B3ria-de-dados">4.0 Análise Exploratória de Dados</a></li>
 <li><a href="#conclus%C3%B5es">Conclusões</a></li>
 </ul>
 <h2 id="resumo">Resumo</h2>
@@ -236,10 +236,10 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 <p>Para guiar a obtenção de features e a análise exploratória de dados, vamos criar diversas hipóteses de negócio relacionadas às peças, aos seus preços e às vendedoras. Hipóteses relacionadas às vendas em si serão realizadas na <a href="https://henriquelucasdf.github.io/post/projeto3/">segunda etapa</a> deste projeto.</p>
 <p>Após conversas com a proprietária das lojas, as seguintes hipóteses foram geradas:</p>
 <ul>
-<li>H1. Peças com valor entre R$29,90 e R$49,90 são as com maior quantidade vendida.</li>
+<li>H1. Peças com valor entre R$29,90 e R$49,90 são as mais vendidas.</li>
 <li>H2. Peças douradas são as mais vendidas.</li>
-<li>H3. Peças de R$39,90 são as mais vendidos.</li>
-<li>H4. Colares são os itens com maior quantidade vendida.</li>
+<li>H3. Peças de R$39,90 são as mais vendidas.</li>
+<li>H4. Colares são os itens com a maior quantidade vendida.</li>
 <li>H5. Colares dourados de R$39,90 são os itens com maior quantidade vendida.</li>
 <li>H6. 80% do faturamento mensal é proveniente de itens dourados.</li>
 <li>H7. 80% do faturamento mensal é proveniente de colares dourados.</li>
@@ -278,10 +278,103 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 <p><strong>idcupom:</strong> para cada operação realizada (cada venda para um cliente, por exemplo), uma sequência de números de até 25 dígitos era gerada pelo sistema de vendas. Para tornar a variável mais legível, utilizamos o Label Encoder para transformar esta coluna em categorias numéricas.</p>
 </li>
 <li>
-<p>Por fim, renomeamos as colunas. As features que serão utilizadas na Análise Exploratória de Dados são: <strong>&lsquo;vendedor&rsquo;, &lsquo;data&rsquo;, &lsquo;cliente&rsquo;, &lsquo;tipo&rsquo;, &lsquo;nomeproduto&rsquo;, &lsquo;qtde&rsquo;, &lsquo;valor_base&rsquo;, &lsquo;descontos&rsquo;, &lsquo;acrescimos&rsquo;, &lsquo;valor_final&rsquo;, &lsquo;ano&rsquo;, &lsquo;mes&rsquo;, &lsquo;dia&rsquo; e &lsquo;dia_semana&rsquo;</strong>.</p>
+<p>Por fim, renomeamos as colunas. As features que serão utilizadas na Análise Exploratória de Dados são: <strong>&lsquo;vendedor&rsquo;, &lsquo;data&rsquo;, &lsquo;cliente&rsquo;, &lsquo;tipo&rsquo;, &lsquo;nomeproduto&rsquo;, &lsquo;qtde&rsquo;, &lsquo;valor_base&rsquo;, &lsquo;descontos&rsquo;, &lsquo;acrescimos&rsquo;, &lsquo;valor_final&rsquo;, &lsquo;ano&rsquo;, &lsquo;mes&rsquo;, &lsquo;dia&rsquo;,  &lsquo;dia_semana&rsquo;, &lsquo;item&rsquo;</strong> e <strong>&lsquo;cor&rsquo;</strong>.</p>
 </li>
 </ul>
 <h2 id="40-análise-exploratória-de-dados">4.0 Análise Exploratória de dados</h2>
+<p>Nesta etapa iremos realizar uma análise exploratória dos dados visando gerar insights de negócio em obter um maior entendimento da empresa. Nos guiaremos pela lista de hipóteses criadas anteriormente, classificando-as em verdadeira ou falsa.</p>
+<ul>
+<li>
+<p><strong>H1. Peças com valor entre R$29,90 e R$49,90 são as com a maior quantidade vendida.</strong></p>
+<ul>
+<li>
+<p><strong>Conclusão:</strong> Verdadeira. Peças com preços entre R$29,00 e R$50,00  sempre foram as mais vendidas na loja. Houve uma mudança de comportamento na segunda classe mais vendida a partir de 2017, passando da classe entre 0 e 29 reais para a de R$50,00 a RS70,00.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/h1.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>H2. Peças douradas são as mais vendidas.</strong></p>
+<ul>
+<li>
+<p><strong>Conclusão:</strong> Verdadeira. Peças douradas são as mais vendidas em todos os anos, seguidas das peças da cor prata.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/h2.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>H3. Peças de R$39,90 são as mais vendidas.</strong></p>
+<ul>
+<li>
+<p><strong>Conclusão:</strong> Falsa. Até 2017, as peças mais vendidas eram as de R$39,00. A partir de 2018, passou a ser as de R$49,90.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/h3.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>H4. Colares são os itens com a maior quantidade vendida.</strong></p>
+<ul>
+<li>
+<p><strong>Conclusão:</strong> Falsa. Brincos sempre são os itens mais vendidos.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/h4.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>H5. Colares dourados de R$39,90 são os itens com maior quantidade vendida.</strong></p>
+<ul>
+<li>
+<p><strong>Conclusão:</strong> Falsa. Brincos de R$39,00 são os itens mais vendidos, seguidos dos brincos de R$49,90.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/h5.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>H6. 80% do faturamento mensal é proveniente de itens dourados.</p>
+</li>
+<li>
+<p>H7. 80% do faturamento mensal é proveniente de colares dourados.</p>
+</li>
+<li>
+<p>H8. 80% das devoluções são de pulseiras prata.</p>
+</li>
+<li>
+<p>H9. A maioria das devoluções ocorrem em janeiro.</p>
+</li>
+<li>
+<p>H10. Dezembro é o mês com maior faturamento.</p>
+</li>
+<li>
+<p>H11. Sábado é o dia da semana com maior faturamento.</p>
+</li>
+<li>
+<p>H12. Conjuntos correspondem a 20% do faturamento em Dezembro.</p>
+</li>
+<li>
+<p>H13. Conjuntos possuem a maior média de preço.</p>
+</li>
+<li>
+<p>H14. Jane é a vendedora que mais vende.</p>
+</li>
+<li>
+<p>H15. A média de vendas por cliente é de 2 peças.</p>
+</li>
+<li>
+<p>H16. 20% das vendas estão acima do Ticket Médio em dezembro.</p>
+</li>
+<li>
+<p>H17. 5% do faturamento é proveniente de vendas com valor acima de R$500,00</p>
+</li>
+<li>
+<p>H18. O faturamento médio caiu após a pandemia.</p>
+</li>
+<li>
+<p>H19. O Ticket médio caiu após a pandemia.</p>
+</li>
+<li>
+<p>H20. A quantidade de peças por cliente caiu após a pandemia.</p>
+</li>
+</ul>
 <h2 id="conclusões">Conclusões</h2>
 <ul class="pa0">
   
