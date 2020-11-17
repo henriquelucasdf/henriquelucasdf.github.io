@@ -1,6 +1,6 @@
 .cf {
 
-text-align: justify;
+text-align: left;
 
 opacity: 1.0;
 
@@ -13,7 +13,7 @@ height: auto;
 
 .nested-links{
 
-text-align: justify;
+text-align:  left;
 
 opacity: 1.0;
 
