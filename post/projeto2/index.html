@@ -42,7 +42,7 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma análise exploratória de dados desta loja além de uma previsão das vendas.">
 <meta itemprop="datePublished" content="2020-11-05T10:58:08-03:00" />
 <meta itemprop="dateModified" content="2020-11-05T10:58:08-03:00" />
-<meta itemprop="wordCount" content="1543">
+<meta itemprop="wordCount" content="1814">
 
 
 
@@ -185,25 +185,23 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 
       
       
-        <span class="f6 mv4 dib tracked"> - 8 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 1543 words</span>
+        <span class="f6 mv4 dib tracked"> - 9 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1814 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h1 id="introdução">Introdução</h1>
 <p>Este projeto consiste em uma análise exploratória de dados de uma loja do ramo de bijuterias localizada no Distrito Federal. Trata-se de uma franqueada que está há 10 anos no mercado, com um market share consolidado e que já empregou dezenas de pessoas.</p>
 <p>No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma análise exploratória de dados desta loja além de uma previsão das vendas. A empresa ficou algumas semanas fechada devido à quarentena, o que resultou em um gap nos dados, além de uma queda abrupta no faturamento. Apesar do crescimento mês a mês nas vendas após a reabertura, o cenário de incerteza ainda prevalece, com a possibilidade de uma segunda onda do vírus no Distrito Federal e a falta de confiança dos clientes.</p>
 <p>Este projeto foi dividido em duas partes, sendo que nesta <strong>será realizada uma análise exploratória dos dados dos últimos 6 anos desta loja com o objetivo de gerar insights de negócio.</strong> Em outro <a href="https://henriquelucasdf.github.io/post/projeto3/">projeto</a> a previsão das vendas para dezembro de 2020 será obtida utilizando uma abordagem de Séries Temporais.</p>
-<p>Segue abaixo o conteúdo deste projeto e, em seguida, um resumo com os principais achados.</p>
+<p>Para ter acesso ao Notebook utilizado neste projeto, acesse este <a href="https://colab.research.google.com/drive/13gKZxabt-kHyX86x0AK8OMCVHeQ7kV9v?usp=sharing">link</a>.</p>
 <h3 id="conteúdo"><strong>Conteúdo:</strong></h3>
 <ul>
-<li><a href="#resumo">Resumo</a></li>
 <li><a href="#10-an%C3%A1lise-inicial-dos-dados">1.0 Análise Inicial dos Dados</a></li>
 <li><a href="#20-cria%C3%A7%C3%A3o-de-hip%C3%B3teses-de-neg%C3%B3cio">2.0 Criação de Hipóteses de Negócio</a></li>
 <li><a href="#30-feature-engineering">3.0 Feature Engineering</a></li>
 <li><a href="#40-an%C3%A1lise-explorat%C3%B3ria-de-dados">4.0 Análise Exploratória de Dados</a></li>
 <li><a href="#conclus%C3%B5es">Conclusões</a></li>
 </ul>
-<h2 id="resumo">Resumo</h2>
 <h2 id="10-análise-inicial-dos-dados">1.0 Análise Inicial dos dados</h2>
 <h3 id="11-obtenção-dos-dados">1.1 Obtenção dos Dados</h3>
 <p>Os dados foram obtidos do próprio sistema da empresa, contendo a data de venda, o preço do item, o nome do vendedor, entre outros. A biblioteca Pandas foi utilizada para carregar os dados. Colunas não relevantes para o projeto e dados duplicados foram retirados.</p>
@@ -254,8 +252,7 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 <li>H16. Ao menos 20% das vendas estão acima do Ticket Médio em dezembro.</li>
 <li>H17. Ao menos 5% do faturamento é proveniente de vendas com valor acima de R$500,00</li>
 <li>H18. O faturamento caiu após a pandemia.</li>
-<li>H19. O Ticket médio caiu após a pandemia.</li>
-<li>H20. A quantidade de peças por cliente caiu após a pandemia.</li>
+<li>H19. O número de clientes caiu após a pandemia.</li>
 </ul>
 <h2 id="30-feature-engineering">3.0 Feature Engineering</h2>
 <p>Nos guiando pelas hipóteses elaboradas, as seguintes operações foram realizadas nas features:</p>
@@ -342,7 +339,7 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 <p><strong>H7. 80% do faturamento mensal é proveniente de colares dourados.</strong></p>
 <ul>
 <li>
-<p><strong>Conclusão:</strong> Falsa. Colares dourados correspondem a cerca de 20% do faturamento mensal, assim como os brincos dourados.</p>
+<p><strong>Conclusão:</strong> Falsa. Colares dourados correspondem a cerca de 15% do faturamento mensal, assim como os brincos dourados.</p>
 <p><img src="https://henriquelucasdf.github.io/images/projeto_2/h7.png" alt=""></p>
 <p>Pode-se observar ainda a participação de cada peça no faturamento desde 2019:</p>
 <p><img src="https://henriquelucasdf.github.io/images/projeto_2/bns1.png" alt=""></p>
@@ -428,6 +425,9 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 <p><strong>Conclusão:</strong> Verdadeira.  Geralmente cerca de 35% das vendas ficam acima do ticket médio em dezembro.</p>
 <p><img src="https://henriquelucasdf.github.io/images/projeto_2/h16.png" alt=""></p>
 </li>
+<li>
+<p>Observa-se um aumento do ticket médio em 2020 em relação aos anos anteriores.</p>
+</li>
 </ul>
 </li>
 <li>
@@ -440,16 +440,67 @@ No final de outubro de 2020, com o cenário turbulento da pandemia do novo coron
 </ul>
 </li>
 <li>
-<p>H18. O faturamento caiu após a pandemia.</p>
+<p><strong>H18. O faturamento caiu após a pandemia.</strong></p>
+<ul>
+<li>
+<p><strong>Conclusão:</strong> Verdadeira. Houve uma queda em março, com a loja ficando fechada em abril. A loja mostra sinais de recuperação, tendo superado em outubro o faturamento de 2018 para esse mesmo mês.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/h18.png" alt=""></p>
+</li>
+</ul>
 </li>
 <li>
-<p>H19. O Ticket médio caiu após a pandemia.</p>
-</li>
-<li>
-<p>H20. A quantidade de peças por cliente caiu após a pandemia.</p>
+<p><strong>H19. O número de clientes caiu após a pandemia.</strong></p>
+<ul>
+<li><strong>Conclusão:</strong> Verdadeira. Houve uma queda brusca no número de clientes em Maio, Junho e Julho, mas setembro e outubro mostram sinais de recuperação.
+<img src="https://henriquelucasdf.github.io/images/projeto_2/h19.png" alt=""></li>
+</ul>
 </li>
 </ul>
 <h2 id="conclusões">Conclusões</h2>
+<ul>
+<li>
+<p>Em relação às peças:</p>
+<ul>
+<li>A partir de 2018, as peças de R$49,90 foram as mais vendidas.</li>
+<li>Peças douradas são as mais procuradas. Elas correspondem a quase 50% do faturamento total.</li>
+<li>Brincos e colares dourados correspondem a cerca de 35% do faturamento total da loja.</li>
+<li>Brinco é o tipo de peça mais procurada, seguida dos colares.</li>
+<li>Conjunto é o tipo de peça com a maior média de preços. Não se observou um aumento dos preços médios das peças ao longo dos anos.</li>
+</ul>
+</li>
+<li>
+<p>Em relação às devoluções:</p>
+<ul>
+<li>Brinco dourado é tipo de peça com maior devolução.</li>
+<li>Dezembro é o mês em que há mais devoluções.</li>
+</ul>
+</li>
+<li>
+<p>Em relação ao faturamento:</p>
+<ul>
+<li>Dezembro é o mês com maior faturamento, seguido de Maio.</li>
+<li>Sábado é o dia da semana com maior faturamento.</li>
+<li>Em dezembro, os conjuntos correspondem a cerca de 10% do faturamento.</li>
+<li>Em geral, mais de 5% do faturamento é proveniente de vendas de mais de R$500,00.</li>
+</ul>
+</li>
+<li>
+<p>Em relação aos clientes:</p>
+<ul>
+<li>A média de itens por cliente vêm aumentando ao longo do tempo. Em 2020 essa média foi de 2.2 itens por cliente.</li>
+<li>O ticket médio vêm aumentando ao longo do tempo, ficando acima de R$120,00 em 2020.</li>
+</ul>
+</li>
+<li>
+<p>Em relação à pandemia:</p>
+<ul>
+<li>O número de clientes caiu em 2020, assim como o faturamento mensal.</li>
+<li>Entretanto, houve um aumento no número de itens por cliente e no ticket médio, indicando uma melhor conversão de vendas.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_2/conc.png" alt=""></p>
+</li>
+</ul>
+<hr>
 <ul class="pa0">
   
    <li class="list">
