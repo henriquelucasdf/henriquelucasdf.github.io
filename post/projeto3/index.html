@@ -39,11 +39,11 @@
 <meta itemprop="description" content="Previsão de vendas para o mês de dezembro de uma loja varejista do ramo de bijuterias">
 <meta itemprop="datePublished" content="2020-11-05T10:58:08-03:00" />
 <meta itemprop="dateModified" content="2020-11-05T10:58:08-03:00" />
-<meta itemprop="wordCount" content="386">
+<meta itemprop="wordCount" content="1988">
 
 
 
-<meta itemprop="keywords" content="Time Series,Prophet,Previsão de vendas,Otimização Bayesiana,Cross-Validation,Análise Exploratória de Dados," />
+<meta itemprop="keywords" content="Time Series,Prophet,Previsão de vendas,Otimização de Hiperparâmetros,Cross-Validation," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Projeto 3 - Previsão de vendas utilizando Time Series"/>
 <meta name="twitter:description" content="Previsão de vendas para o mês de dezembro de uma loja varejista do ramo de bijuterias"/>
@@ -185,41 +185,230 @@
 
       
       
-        <span class="f6 mv4 dib tracked"> - 2 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 386 words</span>
+        <span class="f6 mv4 dib tracked"> - 10 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1988 words</span>
       
     </header>
-    <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><h1 id="introdução">Introdução</h1>
-<p>Este projeto consiste em uma previsão de vendas para o mês de dezembro de uma loja do ramo de bijuterias localizada no Distrito Federal. Trata-se de uma franqueada que está há 10 anos no mercado, com um market share consolidado e que já empregou dezenas de pessoas.</p>
-<p>No final de outubro de 2020, com o cenário turbulento da pandemia do novo coronavírus, fui procurado para realizar uma previsão das vendas para esta loja além de uma análise exploratória dos dados. A empresa ficou algumas semanas fechada devido à quarentena, o que resultou em um gap nos dados, além de uma queda abrupta no faturamento. Apesar do crescimento mês a mês nas vendas após a reabertura, o cenário de incerteza ainda prevalece, com a possibilidade de uma segunda onda do vírus no Distrito Federal e a falta de confiança dos clientes.</p>
-<p>Este projeto foi dividido em duas partes, sendo que esta parte consistirá em uma <strong>previsão de vendas para dezembro de 2020 através de uma abordagem via Séries Temporais</strong>. Em outro <a href="https://henriquelucasdf.github.io/post/projeto2/">projeto</a>, uma Análise Exploratória de Dados foi realizada, gerando insights para a empresa e detalhando o comportamento de seu estoque.</p>
-<p>Optou-se por utilizar a abordagem de previsão via séries temporais pois o conjunto de dados apresenta uma alta sazonalidade. O modelo Prophet foi utilizado por possuir uma curva de aprendizado curta, ser altamente flexível, possuir suporte para a inserção de feriados, lidar bem com dados faltantes e possuir diversas funcionalidade embutidas na própria biblioteca.</p>
+    <div class="nested-copy-line-height lh-copy times f4 nested-links nested-img mid-gray pr4-l w-90-l"><p>Este projeto consiste em uma previsão de vendas para uma loja varejista do ramo de bijuterias. Ele é uma continuação do <a href="https://henriquelucasdf.github.io/post/projeto2/">Projeto 2</a> deste portfolio, na qual foi realizada a Análise Exploratória de Dados e diversas hipóteses de negócio foram validadas.</p>
+<h1 id="introdução">Introdução</h1>
+<p>Dado o cenário de incerteza causado pela pandemia do novo coronavírus, diversas empresas buscam novas formas de minimizar os riscos e otimizar seus resultados. Uma forma eficiente de fazê-lo é através das ferramentas disponibilizadas pela Ciência de Dados, como por exemplo, a previsão das vendas.</p>
+<p>Neste projeto, visando reduzir a incerteza dos últimos meses de 2020 e guiar a renovação do estoque da empresa em questão, será realizada uma previsão de vendas para o mês de dezembro, período em que ocorrem as maiores vendas nesta loja.</p>
+<p>Optou-se por utilizar a abordagem de previsão via séries temporais pois o conjunto de dados apresenta uma alta sazonalidade e as features disponibilizadas não possuem valor preditivo.</p>
+<p>A biblioteca Prophet foi utilizada por possuir uma curva de aprendizado curta, ser altamente flexível, possuir suporte para a inserção de feriados, lidar bem com dados faltantes e possuir diversas funcionalidade embutidas na própria biblioteca.</p>
 <p>Destaca-se ainda que, como a empresa renova seu estoque antecipadamente para o natal, foi-me disponibilizado apenas uma semana para realizar todo este projeto, o que se mostrou um verdadeiro desafio.</p>
-<p>Segue abaixo o conteúdo deste projeto e, em seguida, um resumo com os principais achados.</p>
+<p>Para visualizar o notebook deste projeto, acesse esse link do <a href="https://colab.research.google.com/drive/1gPuhXtUqU91HHu4KdFFGYMkkJ9f9lzke?usp=sharing">Google Colab</a>.</p>
 <h3 id="conteúdo"><strong>Conteúdo:</strong></h3>
 <ul>
-<li><a href="#resumo">Resumo</a></li>
 <li><a href="#10-an%C3%A1lise-inicial-dos-dados">1.0 Análise Inicial dos Dados</a></li>
-<li><a href="#20-cria%C3%A7%C3%A3o-de-hip%C3%B3teses-de-neg%C3%B3cio">2.0 Criação de Hipóteses de Negócio</a></li>
-<li><a href="#30-feature-engineering">3.0 Feature Engineering</a></li>
-<li><a href="#40-an%C3%A1lise-explorat%C3%B3ria-de-dados-eda">4.0 Análise Exploratória de Dados (EDA)</a></li>
-<li><a href="#50-prepara%C3%A7%C3%A3o-dos-dados">5.0 Preparação dos Dados</a></li>
-<li><a href="#60-elabora%C3%A7%C3%A3o-dos-modelos-de-machine-learning">6.0 Elaboração dos Modelos de Machine Learning</a></li>
-<li><a href="#70-otimiza%C3%A7%C3%A3o-dos-hiperpar%C3%A2metros">7.0 Otimização dos Hiperparâmetros</a></li>
-<li><a href="#80-valida%C3%A7%C3%A3o-com-os-dados-de-teste">8.0 Validação com os Dados de Teste</a></li>
-<li><a href="#90-obten%C3%A7%C3%A3o-das-previs%C3%B5es">9.0 Obtenção das previsões</a></li>
+<li><a href="#20-prepara%C3%A7%C3%A3o-dos-dados">2.0 Preparação dos dados</a></li>
+<li><a href="#30-an%C3%A1lise-explorat%C3%B3ria-de-dados">3.0 Análise Exploratória de Dados</a></li>
+<li><a href="#40-feature-engineering">4.0 Feature Engineering</a></li>
+<li><a href="#50-elabora%C3%A7%C3%A3o-dos-modelos-de-machine-learning">5.0 Elaboração dos Modelos de Machine Learning</a></li>
+<li><a href="#60-otimiza%C3%A7%C3%A3o-dos-hiperpar%C3%A2metros">6.0 Otimização dos Hiperparâmetros</a></li>
+<li><a href="#70-valida%C3%A7%C3%A3o-com-os-dados-de-teste">7.0 Validação com os Dados de Teste</a></li>
+<li><a href="#80-obten%C3%A7%C3%A3o-das-previs%C3%B5es">8.0 Obtenção das previsões</a></li>
 <li><a href="#conclus%C3%B5es">Conclusões</a></li>
 </ul>
-<h2 id="resumo">Resumo</h2>
 <h2 id="10-análise-inicial-dos-dados">1.0 Análise Inicial dos dados</h2>
-<h2 id="20-criação-de-hipóteses-de-negócio">2.0 Criação de Hipóteses de Negócio</h2>
-<h2 id="30-feature-engineering">3.0 Feature Engineering</h2>
-<h2 id="40-análise-exploratória-de-dados">4.0 Análise Exploratória de dados</h2>
-<h2 id="50-preparação-dos-dados">5.0 Preparação dos Dados</h2>
-<h2 id="60-elaboração-dos-modelos-de-machine-learning">6.0 Elaboração dos Modelos de Machine Learning</h2>
-<h2 id="70-otimização-dos-hiperparâmetros">7.0 Otimização dos Hiperparâmetros</h2>
-<h2 id="80-validação-com-os-dados-de-teste">8.0 Validação com os Dados de Teste</h2>
-<h2 id="90-obtenção-das-previsões">9.0 Obtenção das previsões</h2>
+<p>Os dados forma carregados do próprio sistema de vendas da empresa. Sem nenhum tratamento, os dados possuem 196.433 linhas e 23 colunas. O primeiro dado é de 02/01/2014 e o último de 31/10/2020.</p>
+<p>Como uma análise univariada será utilizada, apenas 3 colunas foram mantidas nesse projeto:</p>
+<ul>
+<li><strong>data</strong>: indica a data da transação. Tipo: <strong>datetime</strong>.</li>
+<li><strong>tipo</strong>: mostra o tipo de transação (se é uma venda ou devolução). Tipo: <strong>object</strong>.</li>
+<li><strong>vlrbascom</strong>: indica o valor final da venda realizada. Tipo: <strong>float</strong>.</li>
+</ul>
+<p>Ressalta-se que nenhum valor <em>NaN</em> foi encontrado nestas 3 colunas. Além disso, caso deseje um maior detalhamento dos dados extraídos para esta loja, leia o <a href="https://henriquelucasdf.github.io/post/projeto2/">projeto anterior</a> realizado.</p>
+<h2 id="20-preparação-dos-dados">2.0 Preparação dos Dados</h2>
+<p>Inicialmente, utilizando a coluna <em><strong>tipo</strong></em>, todos os dados que não representavam vendas realizadas foram excluídos do dataset. Após isso, a coluna mencionada foi desconsiderada.</p>
+<p>Em seguida, preparamos 2 datasets: um para vendas diárias e outros para vendas semanais. O primeiro é facilmente obtido realizando o método <em><strong>groupby</strong></em> na coluna da data e somando as vendas para cada dia. Já para o segundo, deve-se utilizar o método <em><strong>resample</strong></em> para agrupar as datas em semanas e em seguida somar as vendas. Isso pode ser visto no código abaixo:</p>
+<pre><code>#Agrupando em dados diários:
+df2_dia = df2.groupby('data').sum().reset_index()
+
+#Agrupando em dados semanais: o resample exige que as datas estejam no index.
+df2_aux = df2_dia.copy()
+df2_aux.set_index('data', inplace=True)
+df2_sem = df2_aux.resample('1W').sum().reset_index()
+</code></pre>
+<p>Por fim, as colunas foram renomeadas para <em><strong>data</strong></em> e <em><strong>vendas_dia</strong></em>  nos dados diários e <em><strong>data</strong></em> e <em><strong>vendas_sem</strong></em> nos dados semanais.</p>
+<h2 id="30-análise-exploratória-de-dados">3.0 Análise Exploratória de dados</h2>
+<h3 id="31-estatística-descritiva">3.1 Estatística Descritiva</h3>
+<p>Utilizando o método <em><strong>pd.describe()</strong></em>, encontramos as principais estatísticas dos dados:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/stats.png" alt=""></p>
+<ul>
+<li>Temos 2351 linhas nos dados diários e 357 nos semanais.</li>
+<li>A venda média na loja é de R$4.508,88 por dia ou R$29.692,93 por semana.</li>
+<li>A maior venda registrada em um dia foi de R$36.687,00 e R$158.247,55 em uma semana.</li>
+<li>Há uma aparente inconsistência nos valores mínimos: a menor venda registrada para um dia é de R$56,90 enquanto que para uma semana é de R$0,00. Isto na verdade foi causado pelo método <strong>resample</strong> aplicado para agrupar os dados em semanas. Como há dias faltantes, ele substitui estas datas com valores nulos.</li>
+</ul>
+<h3 id="32-histograma-das-vendas">3.2 Histograma das vendas:</h3>
+<p>Para visualizar a distribuição dos dados de vendas, foram plotados os histogramas abaixo.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/hist_vendas.png" alt=""></p>
+<ul>
+<li>Pode-se perceber que a <strong>moda</strong>  se situa na classe <strong>[2500, 3000]</strong> para vendas diárias e <strong>[22500, 25000]</strong> para vendas semanais.</li>
+<li>Ambos os histogramas possuem assimetria positiva e se assemelham à distribuição de Poisson.</li>
+<li>Para as vendas semanais, uma quantidade não desprezível de valores se situam na classe [0, 2500], causado provavelmente pelo resample, conforme explicado anteriormente.</li>
+</ul>
+<h3 id="33-boxplot-das-vendas">3.3 Boxplot das vendas</h3>
+<p>Abaixo podemos visualizar o boxplot das vendas para ambos os conjuntos de dados:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/box_vendas.png" alt=""></p>
+<ul>
+<li>É evidente a alta quantidade de outliers presente nos dados. A principal causa destes pontos é o comportamento das vendas nos dias de feriado, como dia das mães e natal.</li>
+<li>Esse alto número de outliers sugere ser necessário transformar os dados de venda para a escala logarítmica ou exponencial (&lt;1) com o fim de suavizar os dados e obter melhores previsões.</li>
+<li>Esses outliers poderão ser melhor compreendidos na próxima seção.</li>
+</ul>
+<h3 id="34-evolução-das-vendas">3.4 Evolução das vendas</h3>
+<p>Na imagem abaixo podemos visualizar a evolução das vendas de 2014 a 2020.</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/evo_vendas.png" alt=""></p>
+<ul>
+<li>Há grandes picos de vendas em Maio e Dezembro, causados pelo dia das mães e natal, respectivamente.</li>
+<li>Pode-se observar uma alta sazonalidade nos dados;</li>
+<li>No começo de 2015, há semanas com vendas nulas. Nesta data, a loja em questão foi reformada e, portanto, ficou fechada neste período.</li>
+<li>Em 2020, a pandemia causou uma queda abrupta nas vendas. Há diversas semanas com vendas nulas. Mas há uma tendência de recuperação.</li>
+</ul>
+<h3 id="35-vendas-em-2020">3.5 Vendas em 2020</h3>
+<p>Observando com mais detalhes o ano de 2020:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/ven_2020.png" alt=""></p>
+<ul>
+<li>Percebe-se uma queda abrupta a partir de março, com um gap de dados em abril e começo de maio. Como dito anteriormente, a loja ficou fechada devido à quarentena.</li>
+<li>Ocorreram vendas em maio, mas não foram vendas significativas. Pergunta-se: <strong>podemos descartar os dados dos meses de março a junho?</strong></li>
+<li>A partir de junho, com a reabertura da loja, vemos uma tendência de recuperação nas vendas, com as vendas de outubro alcançando patamares semelhantes aos de anos anteriores.</li>
+</ul>
+<h3 id="gráficos-de-autocorrelação">Gráficos de autocorrelação</h3>
+<p>Vamos agora visualizar a autocorrelação dos gráficos para melhor entender a modelagem via séries temporais:</p>
+<ul>
+<li>Para dados diários, podemos observar inúmeros termos significativos nos primeiros <strong>lags</strong>, o que é um indicativo de que a série temporal não é estacionária. Uma diferenciação dos dados de venda pode beneficiar o modelo.</li>
+</ul>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/auto_vendas.png" alt=""></p>
+<ul>
+<li>Além disso, pode-se observar que temos uma sazonalidade de aproximadamente 357 dias, um valor esperado dado as características da empresa.</li>
+<li>Com esse valor de sazonalidade, o modelo <strong>SARIMAX</strong> não pode ser utilizado com a pequena quantidade de dados disponibilizada.</li>
+</ul>
+<p>Para dados semanais, temos o seguinte gráfico:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/auto_sem.png" alt=""></p>
+<ul>
+<li>Observa-se 4 lags significativos no começo do gráfico, apresentando valores mais bem comportados do que o gráfico de vendas diárias.</li>
+<li>A sazonalidade aparenta ser de 52 semanas, consistente com os dados diários e as características de negócio.</li>
+</ul>
+<h2 id="40-feature-engineering">4.0 Feature Engineering</h2>
+<h3 id="41-transformação-das-vendas">4.1 Transformação das vendas</h3>
+<p>Para tornar a série mais bem comportadas, 2 alternativas foram testadas: uma transformação logarítmica e uma transformação exponencial com coeficiente 0,33.</p>
+<p>Os resultados podem ser vistos abaixo:
+<img src="https://henriquelucasdf.github.io/images/projeto_3/transf_vendas.png" alt=""></p>
+<ul>
+<li>A função <em><strong>np.log1p()</strong></em> foi utilizada para realizar o logaritmo das vendas pois não apresenta problemas com os valores nulos.</li>
+<li>Pode-se observar que a transformação logarítmica (lado esquerdo) obteve melhores resultados, tornando os dados mais bem comportados, tanto para as vendas semanais como para as vendas diárias.</li>
+<li>Para as vendas semanais, temos alguns valores nulos que devem ser tratados separadamente.</li>
+</ul>
+<h3 id="42-separação-em-treino-e-teste">4.2 Separação em treino e Teste</h3>
+<p>Vamos separar os dados em treino e teste utilizando como critério a data. Os dados de teste serão as vendas de setembro e outubro, tanto para as vendas diárias como para as vendas semanais.</p>
+<h3 id="43-retirando-outliers">4.3 Retirando outliers</h3>
+<p>Por fim, visando melhorar as previsões, vamos retirar os outliers vistos no último gráfico. Apesar disso provocar um gap nos dados, é possível que tal fato seja melhor que a permanência de pontos discrepantes.</p>
+<h2 id="50-elaboração-dos-modelos-de-machine-learning">5.0 Elaboração dos Modelos de Machine Learning</h2>
+<p>Para realizar a previsão de vendas para o mês de Dezembro para esta loja, a biblioteca Prophet foi utilizada. Tal escolha se deu pelos seguintes motivos:</p>
+<ul>
+<li>É de fácil utilização: como este projeto deveria ser realizado em apenas uma semana, um modelo com uma curva de aprendizado curta era o ideal.</li>
+<li>Suporte para feriados: como a loja possui altas vendas nos feriados, é necessário um modelo que permita um ajuste nestas datas e capture o salto de vendas que acontece sazonalmente.</li>
+<li>Diversas funcionalidades embutidas: a biblioteca Prophet conta com diversas ferramentas que agilizam a modelagem, como Cross-Validation, Regressores, Gráficos, Métricas, etc.</li>
+<li>Boa documentação: o modelo é muito bem documentado, sendo seus diversos parâmetros explicados detalhadamente.</li>
+<li>Flexibilidade: o Prophet é capaz de realizar boas previsões em diversos tipos de séries temporais.</li>
+<li>Agilidade: o Prophet é um modelo que treina e realiza previsões rapidamente, permitindo diversos experimentos com os dados.</li>
+</ul>
+<p>Abaixo estão detalhados os passos levados em consideração para realizar a modelagem da série temporal utilizando o Prophet.</p>
+<h3 id="51-modelo-para-vendas-diárias">5.1 Modelo para vendas diárias</h3>
+<h4 id="511-dias-de-feriado">5.1.1 Dias de feriado</h4>
+<p>Inicialmente, deve-se considerar a influência que  os dias de feriado possuem sobre as vendas. Apenas os feriados de natal e dia das mães foram considerados:</p>
+<pre><code>#Feriado de natal:
+natal_dia = pd.DataFrame({
+  'holiday': 'Natal',
+  'ds': pd.to_datetime(['2020-12-23','2019-12-23', '2018-12-23',
+                        '2017-12-23','2016-12-23','2015-12-23']),
+  'lower_window': -23,
+  'upper_window': 8 })
+
+#Feriado dia das mães:
+maes_dia = pd.DataFrame({
+   'holiday': 'dia_maes',
+   'ds': pd.to_datetime(['2020-05-10','2019-05-12','2017-05-14',
+                         '2018-05-13','2016-05-08', '2015-05-10']),
+   'lower_window': -10,
+   'upper_window': 10})
+
+holidays_dia = pd.concat((natal_dia,maes_dia))
+</code></pre>
+<p>Os parâmetros lower_window e upper upper_window controlam a janela de influência de cada um dos feriados.</p>
+<h4 id="512-definindo-o-modelo">5.1.2 Definindo o modelo:</h4>
+<p>O modelo para vendas diárias foi criado com a seguinte estrutura:</p>
+<pre><code>modelo_dia = Prophet(holidays = holidays_dia, holidays_prior_scale = 1,
+                     seasonality_mode='multiplicative', seasonality_prior_scale = 0.001,
+                     changepoint_range=0.9, changepoint_prior_scale=0.5,
+                     daily_seasonality=False, weekly_seasonality = False,
+                     yearly_seasonality = False).add_seasonality(
+                         name = 'monthly',
+                         period = 30.5,
+                         fourier_order=55
+                     ).add_seasonality(
+                         name = 'weekly',
+                         period = 7,
+                         fourier_order=15
+                     ).add_seasonality(
+                         name = 'yearly',
+                         period = 365.25,
+                         fourier_order = 20
+                 )
+</code></pre>
+<h4 id="513-treinando-e-realizando-a-cross-validation">5.1.3 Treinando e realizando a Cross-Validation</h4>
+<p>Em seguida, o modelo foi treinado e a cross-validation realizada utilizando as próprias ferramentas do Prophet. Obteve-se o seguinte resultado:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/dia_result.png" alt="">
+O resultado não é satisfatório. Vamos tentar agora com o modelo para vendas semanais.</p>
+<h3 id="52-modelo-para-vendas-semanais">5.2 Modelo para vendas semanais</h3>
+<h4 id="521-dias-de-feriado">5.2.1 Dias de feriado</h4>
+<p>Para o modelo de vendas semanais, um cuidado adicional deve ser tomado: devido à estrutura das datas, os feriados no dataframe não coincidem com as datas dos feriados reais. Portanto, para definir os feriados, utilizou-se as semanas com maiores vendas em dezembro e maio de cada ano.</p>
+<h4 id="522-definindo-o-modelo">5.2.2 Definindo o modelo:</h4>
+<p>O modelo para vendas semanais foi criado com a seguinte estrutura:</p>
+<pre><code>modelo_sem = Prophet(holidays = holidays_sem, holidays_prior_scale = 40,
+                        seasonality_mode='multiplicative', seasonality_prior_scale = 5,
+                        changepoint_range= 0.9, changepoint_prior_scale = 0.05,
+                        daily_seasonality=False, weekly_seasonality = False,
+                        yearly_seasonality = False).add_seasonality(
+                          name = 'monthly',
+                          period = 30.5,
+                          fourier_order=10
+                      ).add_seasonality(
+                          name = 'weekly',
+                          period = 7,
+                          fourier_order=15
+                      ).add_seasonality(
+                          name = 'yearly',
+                          period = 365.25,
+                          fourier_order = 20
+                      )
+</code></pre>
+<h4 id="523-treinando-e-realizando-a-cross-validation">5.2.3 Treinando e realizando a Cross-Validation</h4>
+<p>O modelo foi treinado nos dados semanais e a cross-validation realizada. O seguinte resultado foi obtido:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/sem_result.png" alt=""></p>
+<p>O resultado apresentado é superior ao de vendas diárias. Vamos agora otimizar os hiperparâmetros desse modelo para extrair toda a sua capacidade.</p>
+<h2 id="60-otimização-dos-hiperparâmetros">6.0 Otimização dos Hiperparâmetros</h2>
+<p>A biblioteca <a href="https://optuna.readthedocs.io/en/stable/index.html">Optuna</a> foi selecionada para realizar a otimização dos hiperparâmetros. Para visualizar em detalhes como foi feita a otimização, acesse o notebook do <a href="https://colab.research.google.com/drive/1gPuhXtUqU91HHu4KdFFGYMkkJ9f9lzke?usp=sharing">Colab</a></p>
+<p>Uma otimização gaussiana foi utilizada através do sampler TPE (Tree-structured Parzen Estimator). Este algoritmo é baseado em amostragens independentes. Em cada iteração, para cada parâmetro, o TPE testa um Modelo Gaussiano (GMM) L(x) para um conjunto de parâmetros associados aos melhores objetivos, e outro GMM G(x) para os parâmetros restantes. Ele escolhe o melhor valor de x que maximiza a razão L(x)/G(x).</p>
+<p>Os melhores parâmetros encontrados para o modelo foram:</p>
+<ul>
+<li>changepoint_prior_scale: 0.046</li>
+<li>seasonality_prior_scale: 8.41</li>
+<li>holidays_prior_scale: 42.83</li>
+<li>changepoint_range: 0.92</li>
+<li>lower_window_natal: -10</li>
+<li>upper_window_natal: 9</li>
+<li>lower_window_maes: -4</li>
+<li>upper_window_maes: 10</li>
+<li>fourier_order_mes: 8</li>
+<li>fourier_order_sem: 16</li>
+<li>fourier_order_ano: 27</li>
+</ul>
+<p>Com estes valores, o modelo foi treinado e a cross-validation realizada, obtendo-se os seguintes resultados:</p>
+<p><img src="https://henriquelucasdf.github.io/images/projeto_3/tuned_result.png" alt=""></p>
+<p>Houve uma ligeira melhora em todas as métricas, com o R2 atingindo 92% e um MAPE de 19,74%. Apesar desses valores são serem considerados excelentes, acredito que, devido à inconsistência dos dados, é o melhor valor que se pode obter utilizando Time Series.</p>
+<h2 id="70-validação-com-os-dados-de-teste">7.0 Validação com os Dados de Teste</h2>
+<h2 id="80-obtenção-das-previsões">8.0 Obtenção das previsões</h2>
 <h2 id="conclusões">Conclusões</h2>
 <ul class="pa0">
   
@@ -236,15 +425,11 @@
    </li>
   
    <li class="list">
-     <a href="https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-bayesiana" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Otimização Bayesiana</a>
+     <a href="https://henriquelucasdf.github.io/tags/otimiza%C3%A7%C3%A3o-de-hiperpar%C3%A2metros" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Otimização de Hiperparâmetros</a>
    </li>
   
    <li class="list">
      <a href="https://henriquelucasdf.github.io/tags/cross-validation" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Cross-Validation</a>
-   </li>
-  
-   <li class="list">
-     <a href="https://henriquelucasdf.github.io/tags/an%C3%A1lise-explorat%C3%B3ria-de-dados" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Análise Exploratória de Dados</a>
    </li>
   
 </ul>
@@ -258,17 +443,6 @@
 
 
 
-
-  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3"></p>
-    <ul class="pa0 list">
-	   
-	     <li  class="mb2">
-          <a href="https://henriquelucasdf.github.io/post/projeto2/">Projeto 2 - Análise Exploratória de Dados para uma loja varejista do ramo de bijuterias</a>
-        </li>
-	    
-    </ul>
-</div>
 
 </aside>
 
